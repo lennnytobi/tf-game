@@ -1,36 +1,194 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Spiel-Rangliste - 8-Team Game App
 
-## Getting Started
+Eine Next.js 14 Web-App für ein 8-Team Spiel mit Supabase Backend und Echtzeit-Updates.
 
-First, run the development server:
+## Features
+
+- **Öffentliche Seite**: Live-Rangliste der 8 Teams (A-H) mit Quiz-Formular
+- **Admin-Bereich**: Geschützter Bereich für Organisatoren zum Vergeben von Punkten
+- **Echtzeit-Updates**: Live-Updates der Rangliste via Supabase Realtime
+- **Quiz-System**: Benutzer können Antworten einreichen (Format: A-1 bis H-99)
+- **Punktevergabe**: Organisatoren können Punkte für 7 verschiedene Spiele vergeben
+- **Rückgängig-Funktion**: Negative Einträge zum Rückgängigmachen von Aktionen
+
+## Tech Stack
+
+- Next.js 14 (App Router)
+- TypeScript
+- TailwindCSS
+- Supabase (Database + Realtime)
+- PostgreSQL mit Row Level Security (RLS)
+
+## Setup
+
+### 1. Dependencies installieren
+
+```bash
+npm install
+```
+
+### 2. Supabase Projekt einrichten
+
+1. Erstellen Sie ein neues Supabase Projekt
+2. Kopieren Sie die Projekt-URL und API-Keys
+3. Kopieren Sie `.env.local.example` zu `.env.local` und füllen Sie die Werte aus:
+
+```bash
+cp env.local.example .env.local
+```
+
+### 3. Datenbank Schema einrichten
+
+Führen Sie die SQL-Dateien in der Supabase SQL-Konsole aus:
+
+1. `sql/schema.sql` - Erstellt Tabellen, Views und Funktionen
+2. `sql/rls.sql` - Richtet Row Level Security ein
+3. `sql/seed.sql` - Fügt Testdaten ein (Teams A-H und Quiz-Fragen)
+
+### 4. Admin-Code konfigurieren
+
+Setzen Sie einen sicheren Admin-Code in `.env.local`:
+
+```
+ADMIN_CODE=ihr-sicherer-admin-code
+```
+
+### 5. Entwicklungsserver starten
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Die App ist dann unter `http://localhost:3000` verfügbar.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verwendung
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Öffentliche Seite (`/`)
 
-## Learn More
+- Zeigt die Live-Rangliste der 8 Teams
+- Quiz-Formular für Benutzer:
+  - **Benutzer-ID**: Format A-1 bis H-99 (Team-Code + Spieler-Nummer)
+  - **Fragen-ID**: 1-5
+  - **Antwort**: Freitext-Antwort
 
-To learn more about Next.js, take a look at the following resources:
+### Admin-Bereich (`/admin`)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Geschützt durch Admin-Code (gespeichert in localStorage)
+- Formular zum Vergeben von Punkten:
+  - **Team**: A-H auswählen
+  - **Spiel-ID**: 1-7
+  - **Punkte**: Kann negativ sein
+  - **Grund**: Optional
+  - **Vergeben von**: Name des Organisators
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Historie der letzten 50 Einträge mit Rückgängig-Funktion
 
-## Deploy on Vercel
+## Datenbank Schema
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Teams
+- 8 feste Teams mit Codes A-H
+- Name und Sortierreihenfolge
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Quiz-Fragen
+- 5 Fragen mit normalisierten Antworten
+- Nur über RPC-Funktion zugänglich
+
+### Submissions
+- Benutzer-Einreichungen
+- Eindeutige Einschränkung: Ein Team kann pro Frage nur einmal Punkte erhalten
+
+### Points Ledger
+- Append-only Log aller Punktevergaben
+- Verschiedene Quellen: quiz, game, bonus, penalty, manual
+- Echtzeit-Updates für Live-Rangliste
+
+## API Endpoints
+
+### `POST /api/admin/award`
+Verleiht Punkte an Teams (nur mit Admin-Code).
+
+**Request:**
+```json
+{
+  "teamCode": "A",
+  "gameId": "1",
+  "points": 5,
+  "reason": "Sieg im ersten Spiel",
+  "createdBy": "Organisator"
+}
+```
+
+**Headers:**
+```
+x-admin-code: ihr-admin-code
+```
+
+## Sicherheit
+
+- Row Level Security (RLS) aktiviert
+- Öffentliche Benutzer können nur Submissions einreichen
+- Quiz-Antworten sind server-seitig geschützt
+- Admin-Funktionen erfordern Service-Role-Key
+- Admin-Code-Schutz für Organisator-Bereich
+
+## Deployment
+
+### Vercel (Empfohlen)
+
+1. Verbinden Sie Ihr Repository mit Vercel
+2. Fügen Sie Umgebungsvariablen hinzu:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_KEY`
+   - `ADMIN_CODE`
+3. Deploy
+
+### Andere Plattformen
+
+Stellen Sie sicher, dass alle Umgebungsvariablen gesetzt sind und die Datenbank-Scripts ausgeführt wurden.
+
+## Entwicklung
+
+### Scripts
+
+```bash
+npm run dev          # Entwicklungsserver
+npm run build        # Production Build
+npm run start        # Production Server
+npm run lint         # ESLint
+```
+
+### Datenbank-Updates
+
+Bei Schema-Änderungen:
+1. SQL-Dateien aktualisieren
+2. In Supabase SQL-Konsole ausführen
+3. Bei größeren Änderungen: Migration-Script erstellen
+
+## Troubleshooting
+
+### Häufige Probleme
+
+1. **"Unknown team code" Fehler**
+   - Überprüfen Sie, ob Teams korrekt in der Datenbank eingefügt wurden
+   - Benutzer-ID Format: A-1 bis H-99
+
+2. **Realtime-Updates funktionieren nicht**
+   - Überprüfen Sie Supabase Realtime-Einstellungen
+   - RLS-Policies für `points_ledger` überprüfen
+
+3. **Admin-Code wird nicht akzeptiert**
+   - Überprüfen Sie `.env.local` ADMIN_CODE
+   - Browser-Cache leeren (localStorage)
+
+4. **Quiz-Antworten werden nicht gewertet**
+   - Überprüfen Sie `quiz_questions` Tabelle
+   - Antworten müssen exakt normalisiert sein
+
+## Support
+
+Bei Problemen:
+1. Überprüfen Sie die Browser-Konsole für Fehler
+2. Überprüfen Sie Supabase Logs
+3. Überprüfen Sie Umgebungsvariablen
+4. Überprüfen Sie Datenbank-Schema und RLS-Policies
