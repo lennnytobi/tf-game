@@ -68,9 +68,9 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
     await fetchExistingSubmissions(mockQuestions)
     
     setQuestionsLoading(false)
-  }, [selectedTeam])
+  }, [selectedTeam, fetchExistingSubmissions])
 
-  const fetchExistingSubmissions = async (questions: Question[]) => {
+  const fetchExistingSubmissions = useCallback(async (questions: Question[]) => {
     try {
       // Fetch existing submissions for this team, ordered by creation time (latest first)
       const { data: submissions, error } = await supabase
@@ -124,8 +124,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
         isAnswered: false
       })))
     }
-    
-    // TODO: Implement database fetching later
+  }, [selectedTeam])
     /*
     try {
       // First try to fetch team-specific questions
@@ -260,7 +259,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
         throw error
       }
 
-      const result = data as any
+      const result = data as { is_correct: boolean; scored: boolean; team: string; team_total: number }
 
       if (result.is_correct && result.scored) {
         setQuestionAnswers(prev => prev.map(qa => 
