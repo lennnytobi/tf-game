@@ -1,15 +1,18 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { supabaseConfig } from '@/lib/supabaseClient'
 
 export default function DebugInfo() {
   const [debugInfo, setDebugInfo] = useState<any>({})
 
   useEffect(() => {
     setDebugInfo({
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'Present' : 'Missing',
-      isPlaceholder: process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co',
+      supabaseConfig: supabaseConfig,
+      urlParams: typeof window !== 'undefined' ? {
+        supabase_url: new URLSearchParams(window.location.search).get('supabase_url'),
+        supabase_key: new URLSearchParams(window.location.search).get('supabase_key') ? 'Present' : 'Missing'
+      } : 'Server-side',
       timestamp: new Date().toISOString()
     })
   }, [])
@@ -20,6 +23,13 @@ export default function DebugInfo() {
       <pre className="text-xs mt-2">
         {JSON.stringify(debugInfo, null, 2)}
       </pre>
+      <div className="mt-2 text-sm">
+        <p><strong>Um Supabase zu aktivieren:</strong></p>
+        <p>Füge diese Parameter zur URL hinzu:</p>
+        <code className="bg-gray-200 px-2 py-1 rounded text-xs">
+          ?supabase_url=DEINE_SUPABASE_URL&supabase_key=DEIN_SUPABASE_KEY
+        </code>
+      </div>
     </div>
   )
 }
