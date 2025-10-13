@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 
 interface Team {
@@ -37,9 +37,9 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
 
   useEffect(() => {
     fetchTeamQuestions()
-  }, [selectedTeam])
+  }, [selectedTeam, fetchTeamQuestions])
 
-  const fetchTeamQuestions = async () => {
+  const fetchTeamQuestions = useCallback(async () => {
     console.log('Fetching questions for team:', selectedTeam)
     
     // For now, use mock questions to ensure it works
@@ -68,7 +68,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
     await fetchExistingSubmissions(mockQuestions)
     
     setQuestionsLoading(false)
-  }
+  }, [selectedTeam])
 
   const fetchExistingSubmissions = async (questions: Question[]) => {
     try {
@@ -289,10 +289,10 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
           type: 'error' 
         })
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error submitting answer:', error)
       setMessage({ 
-        text: error.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 
+        text: error instanceof Error ? error.message : 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 
         type: 'error' 
       })
     } finally {

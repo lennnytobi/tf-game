@@ -139,8 +139,8 @@ export default function AdminAwardForm() {
       setMessage({ text: 'Punkte erfolgreich vergeben!', type: 'success' })
       setFormData({ teamCode: '', gameId: '', points: '', reason: '', createdBy: '' })
       fetchLedgerEntries()
-    } catch (error: any) {
-      setMessage({ text: error.message, type: 'error' })
+    } catch (error: unknown) {
+      setMessage({ text: error instanceof Error ? error.message : 'Ein Fehler ist aufgetreten', type: 'error' })
     } finally {
       setLoading(false)
     }
@@ -185,8 +185,8 @@ export default function AdminAwardForm() {
 
       setMessage({ text: 'Eintrag erfolgreich rückgängig gemacht!', type: 'success' })
       fetchLedgerEntries()
-    } catch (error: any) {
-      setMessage({ text: error.message, type: 'error' })
+    } catch (error: unknown) {
+      setMessage({ text: error instanceof Error ? error.message : 'Ein Fehler ist aufgetreten', type: 'error' })
     }
   }
 

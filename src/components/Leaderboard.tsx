@@ -10,11 +10,6 @@ interface Team {
   sort_order: number
 }
 
-interface TeamTotal {
-  team_id: string
-  score: number
-}
-
 interface TeamWithScore extends Team {
   score: number
   rank: number
@@ -124,7 +119,7 @@ export default function Leaderboard() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
-            {teams.map((team, index) => (
+            {teams.map((team) => (
               <tr 
                 key={team.id} 
                 className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
