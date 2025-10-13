@@ -230,7 +230,6 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
       setQuestionsLoading(false)
     }
     */
-  }
 
   const handleAnswerSubmit = async (questionId: number, answer: string) => {
     if (!answer.trim()) {
