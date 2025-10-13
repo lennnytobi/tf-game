@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Spiel-Rangliste",
-  description: "8-Team Game Leaderboard",
+  title: "Traineefahrt - Out Of Homeoffice",
+  description: "Hier findet ihr eine Rangliste für die Teams zur Übersicht und könnt durch das Quiz initiell Punkte sammeln. Die Karte hilft euch beim Teambuilding am Samstag zu den Stationen zu navigieren.",
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',

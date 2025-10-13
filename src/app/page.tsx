@@ -58,8 +58,14 @@ export default function HomePage() {
     <div className="min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 py-4 sm:py-8">
         {/* Header */}
-        <div className="flex justify-center items-center mb-6">
-          <h1 className="text-2xl sm:text-4xl font-bold text-white">Spiel-Rangliste</h1>
+        <div className="mb-6">
+          <h1 className="text-2xl sm:text-4xl font-bold text-white text-center mb-3">
+            Traineefahrt - Out Of Homeoffice
+          </h1>
+          <p className="text-sm sm:text-base text-gray-300 text-center max-w-3xl mx-auto px-4">
+            Hier findet ihr eine Rangliste für die Teams zur Übersicht und könnt durch das Quiz initiell Punkte sammeln. 
+            Die Karte hilft euch beim Teambuilding am Samstag zu den Stationen zu navigieren.
+          </p>
         </div>
 
         {/* Tab Switcher */}
