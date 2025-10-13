@@ -37,6 +37,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
 
   useEffect(() => {
     fetchTeamQuestions()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTeam])
 
   const fetchTeamQuestions = async () => {
