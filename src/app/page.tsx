@@ -7,6 +7,7 @@ import TeamMembers from '@/components/TeamMembers'
 import TeamSelection from '@/components/TeamSelection'
 import TeamQuiz from '@/components/TeamQuiz'
 import MapView from '@/components/MapView'
+import TeamLogos from '@/components/TeamLogos'
 
 interface Team {
   id: string
@@ -67,6 +68,9 @@ export default function HomePage() {
             Die Karte hilft euch beim Teambuilding am Samstag zu den Stationen zu navigieren.
           </p>
         </div>
+
+        {/* Team Logos */}
+        <TeamLogos />
 
         {/* Tab Switcher */}
         <TabSwitcher activeTab={activeTab} onTabChange={setActiveTab} />
