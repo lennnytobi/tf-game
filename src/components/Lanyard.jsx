@@ -23,7 +23,7 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
       >
         <ambientLight intensity={Math.PI} />
-        <Physics gravity={gravity} timeStep={1 / 60}>
+        <Physics gravity={gravity} interpolate={true} timeStep={1 / 60}>
           <Band />
         </Physics>
         <Environment blur={0.75}>
