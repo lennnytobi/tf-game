@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+// Removed unused useState import
 
 interface Team {
   id: string

@@ -260,7 +260,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
         throw error
       }
 
-      const result = data as any
+       const result = data as { is_correct: boolean; scored: boolean; team: string; team_total: number }
 
       if (result.is_correct && result.scored) {
         setQuestionAnswers(prev => prev.map(qa => 
@@ -289,10 +289,11 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
           type: 'error' 
         })
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error submitting answer:', error)
+      const errorMessage = error instanceof Error ? error.message : 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
       setMessage({ 
-        text: error.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 
+        text: errorMessage, 
         type: 'error' 
       })
     } finally {

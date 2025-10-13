@@ -64,7 +64,7 @@ export default function TeamSelection({ onTeamSelect }: TeamSelectionProps) {
       </div>
       
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-        {teams.map((team, index) => (
+        {teams.map((team) => (
           <button
             key={team.id}
             onClick={() => onTeamSelect(team)}
