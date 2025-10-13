@@ -7,6 +7,7 @@ import TeamMembers from '@/components/TeamMembers'
 import TeamSelection from '@/components/TeamSelection'
 import TeamQuiz from '@/components/TeamQuiz'
 import MapView from '@/components/MapView'
+import DebugInfo from '@/components/DebugInfo'
 
 interface Team {
   id: string
@@ -65,10 +66,13 @@ export default function HomePage() {
         {/* Tab Switcher */}
         <TabSwitcher activeTab={activeTab} onTabChange={setActiveTab} />
 
-        {/* Content */}
-        <div className="max-w-4xl mx-auto">
-          {renderContent()}
-        </div>
+                    {/* Debug Info */}
+                    <DebugInfo />
+
+                    {/* Content */}
+                    <div className="max-w-4xl mx-auto">
+                      {renderContent()}
+                    </div>
       </div>
     </div>
   )

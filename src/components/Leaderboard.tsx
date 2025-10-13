@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabaseClient'
+import { supabase, isSupabaseReady } from '@/lib/supabaseClient'
 
 interface Team {
   id: string
@@ -23,7 +23,7 @@ export default function Leaderboard() {
   const fetchTeamsAndScores = async () => {
     try {
       // Check if Supabase is properly configured
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
+      if (!isSupabaseReady()) {
         // Use mock data for static export
         const mockTeams = [
           { id: '1', code: 'A', name: 'Team Alpha', sort_order: 1, score: 5, rank: 1, percentage: 80 },
@@ -85,7 +85,7 @@ export default function Leaderboard() {
     fetchTeamsAndScores()
 
     // Only subscribe to realtime changes if Supabase is properly configured
-    if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_URL !== 'https://placeholder.supabase.co') {
+    if (isSupabaseReady()) {
       const channel = supabase
         .channel('scores')
         .on('postgres_changes', { 
