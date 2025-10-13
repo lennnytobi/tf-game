@@ -4,8 +4,8 @@ export default function LanyardHeader() {
   return (
     <div className="mb-6 flex justify-center">
       <div className="relative">
-        {/* Lanyard String */}
-        <div className="absolute left-1/2 -translate-x-1/2 -top-8 w-1 h-8 bg-gradient-to-b from-gray-600 to-gray-400"></div>
+        {/* Lanyard String - Made longer */}
+        <div className="absolute left-1/2 -translate-x-1/2 -top-16 w-1 h-16 bg-gradient-to-b from-gray-600 to-gray-400"></div>
         
         {/* Badge Card */}
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl border-2 border-gray-300 dark:border-gray-600 p-4 sm:p-6 max-w-sm">
@@ -18,7 +18,7 @@ export default function LanyardHeader() {
             </h1>
             <div className="pt-2 border-t border-gray-200 dark:border-gray-600">
               <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                Team Event & Quiz Challenge
+                07.11. - 09.11.
               </p>
             </div>
           </div>
