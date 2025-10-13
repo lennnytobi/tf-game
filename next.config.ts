@@ -4,6 +4,13 @@ const nextConfig: NextConfig = {
   // Optimized for Vercel deployment
   poweredByHeader: false,
   reactStrictMode: true,
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(glb|gltf)$/,
+      type: 'asset/resource',
+    });
+    return config;
+  },
 };
 
 export default nextConfig;
