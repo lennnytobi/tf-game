@@ -8,6 +8,7 @@ import TeamSelection from '@/components/TeamSelection'
 import TeamQuiz from '@/components/TeamQuiz'
 import MapView from '@/components/MapView'
 import TeamLogos from '@/components/TeamLogos'
+import LanyardHeader from '@/components/LanyardHeader'
 
 interface Team {
   id: string
@@ -34,6 +35,7 @@ export default function HomePage() {
         return (
           <div className="space-y-6">
             <Leaderboard />
+            <TeamLogos />
             <TeamMembers />
           </div>
         )
@@ -49,6 +51,7 @@ export default function HomePage() {
         return (
           <div className="space-y-6">
             <Leaderboard />
+            <TeamLogos />
             <TeamMembers />
           </div>
         )
@@ -58,19 +61,16 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 py-4 sm:py-8">
-        {/* Header */}
+        {/* Lanyard Header */}
+        <LanyardHeader />
+
+        {/* Description */}
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-4xl font-bold text-white text-center mb-3">
-            Traineefahrt - Out Of Homeoffice
-          </h1>
           <p className="text-sm sm:text-base text-gray-300 text-center max-w-3xl mx-auto px-4">
             Hier findet ihr eine Rangliste für die Teams zur Übersicht und könnt durch das Quiz initiell Punkte sammeln. 
             Die Karte hilft euch beim Teambuilding am Samstag zu den Stationen zu navigieren.
           </p>
         </div>
-
-        {/* Team Logos */}
-        <TeamLogos />
 
         {/* Tab Switcher */}
         <TabSwitcher activeTab={activeTab} onTabChange={setActiveTab} />

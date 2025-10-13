@@ -42,7 +42,7 @@ const teamLogos = [
 
 export default function TeamLogos() {
   return (
-    <div className="w-full py-6 sm:py-8 bg-blue-900/20 rounded-lg">
+    <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 border border-gray-200 dark:border-gray-700">
       <LogoLoop
         logos={teamLogos}
         speed={40}
@@ -51,7 +51,7 @@ export default function TeamLogos() {
         gap={48}
         pauseOnHover={true}
         fadeOut={true}
-        fadeOutColor="rgba(30, 58, 138, 0.2)" // blue-900 with 20% opacity to match the background
+        fadeOutColor="rgb(31, 41, 55)" // gray-800 to match the box background
         scaleOnHover={true}
         ariaLabel="Team sponsor logos"
       />
