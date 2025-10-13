@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 
 interface Team {
@@ -37,9 +37,9 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
 
   useEffect(() => {
     fetchTeamQuestions()
-  }, [selectedTeam, fetchTeamQuestions])
+  }, [selectedTeam])
 
-  const fetchTeamQuestions = useCallback(async () => {
+  const fetchTeamQuestions = async () => {
     console.log('Fetching questions for team:', selectedTeam)
     
     // For now, use mock questions to ensure it works
@@ -68,22 +68,10 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
     await fetchExistingSubmissions(mockQuestions)
     
     setQuestionsLoading(false)
-  }, [selectedTeam, fetchExistingSubmissions])
+  }
 
-  const fetchExistingSubmissions = useCallback(async (questions: Question[]) => {
+  const fetchExistingSubmissions = async (questions: Question[]) => {
     try {
-      // Check if Supabase is properly configured
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
-        // Initialize with empty answers for static export
-        setQuestionAnswers(questions.map(q => ({
-          questionId: q.id,
-          answer: '',
-          isCorrect: false,
-          isAnswered: false
-        })))
-        return
-      }
-
       // Fetch existing submissions for this team, ordered by creation time (latest first)
       const { data: submissions, error } = await supabase
         .from('submissions')
@@ -136,7 +124,8 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
         isAnswered: false
       })))
     }
-  }, [selectedTeam])
+    
+    // TODO: Implement database fetching later
     /*
     try {
       // First try to fetch team-specific questions
@@ -242,6 +231,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
       setQuestionsLoading(false)
     }
     */
+  }
 
   const handleAnswerSubmit = async (questionId: number, answer: string) => {
     if (!answer.trim()) {
@@ -260,29 +250,6 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
     setMessage(null)
 
     try {
-      // Check if Supabase is properly configured
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
-        // Mock response for static export
-        const mockCorrect = answer.toLowerCase().includes('richtig') || answer.toLowerCase().includes('correct')
-        if (mockCorrect) {
-          setQuestionAnswers(prev => prev.map(qa => 
-            qa.questionId === questionId 
-              ? { ...qa, isCorrect: true, isAnswered: true, answer }
-              : qa
-          ))
-          setMessage({ 
-            text: `Richtig! Stresslevel erhöht für ${selectedTeam.name} (Demo-Modus)`, 
-            type: 'success' 
-          })
-        } else {
-          setMessage({ 
-            text: 'Leider falsch. Versuch\'s nochmal. (Tipp: Antwort sollte "richtig" enthalten)', 
-            type: 'error' 
-          })
-        }
-        return
-      }
-
       const { data, error } = await supabase.rpc('submit_quiz_answer', {
         player_uid: `${selectedTeam.code}-1`, // Use team code + dummy player number
         q_id: questionId,
@@ -293,7 +260,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
         throw error
       }
 
-      const result = data as { is_correct: boolean; scored: boolean; team: string; team_total: number }
+      const result = data as any
 
       if (result.is_correct && result.scored) {
         setQuestionAnswers(prev => prev.map(qa => 
@@ -322,10 +289,10 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
           type: 'error' 
         })
       }
-    } catch (error: unknown) {
+    } catch (error: any) {
       console.error('Error submitting answer:', error)
       setMessage({ 
-        text: error instanceof Error ? error.message : 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 
+        text: error.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 
         type: 'error' 
       })
     } finally {

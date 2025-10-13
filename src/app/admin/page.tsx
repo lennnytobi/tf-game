@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import AdminAwardForm from '@/components/AdminAwardForm'
 
 export default function AdminPage() {
@@ -61,12 +60,12 @@ export default function AdminPage() {
             </button>
           </form>
           <div className="mt-4 text-center">
-            <Link 
+            <a 
               href="/" 
               className="text-blue-400 hover:text-blue-300 text-sm"
             >
               ← Zurück zur Hauptseite
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -79,12 +78,12 @@ export default function AdminPage() {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold text-white">Admin-Bereich</h1>
           <div className="flex gap-4">
-            <Link 
+            <a 
               href="/"
               className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
             >
               Hauptseite
-            </Link>
+            </a>
             <button
               onClick={handleLogout}
               className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"

@@ -4,12 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:setup": "node scripts/db-setup.js",
-    "export": "next build",
-    "deploy": "npm run export && touch out/.nojekyll"
+    "db:setup": "node scripts/db-setup.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.75.0",

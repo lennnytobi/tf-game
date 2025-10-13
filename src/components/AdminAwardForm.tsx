@@ -63,23 +63,6 @@ export default function AdminAwardForm() {
 
   const fetchTeams = async () => {
     try {
-      // Check if Supabase is properly configured
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
-        // Use mock data for static export
-        const mockTeams = [
-          { id: '1', code: 'A', name: 'Team Alpha', sort_order: 1 },
-          { id: '2', code: 'B', name: 'Team Beta', sort_order: 2 },
-          { id: '3', code: 'C', name: 'Team Gamma', sort_order: 3 },
-          { id: '4', code: 'D', name: 'Team Delta', sort_order: 4 },
-          { id: '5', code: 'E', name: 'Team Epsilon', sort_order: 5 },
-          { id: '6', code: 'F', name: 'Team Zeta', sort_order: 6 },
-          { id: '7', code: 'G', name: 'Team Eta', sort_order: 7 },
-          { id: '8', code: 'H', name: 'Team Theta', sort_order: 8 }
-        ]
-        setTeams(mockTeams)
-        return
-      }
-
       const { data, error } = await supabase
         .from('teams')
         .select('*')
@@ -94,13 +77,6 @@ export default function AdminAwardForm() {
 
   const fetchLedgerEntries = async () => {
     try {
-      // Check if Supabase is properly configured
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
-        // Use mock data for static export
-        setLedgerEntries([])
-        return
-      }
-
       const { data, error } = await supabase
         .from('points_ledger')
         .select(`
@@ -130,49 +106,32 @@ export default function AdminAwardForm() {
 
     try {
       const adminCode = localStorage.getItem('adminCode')
-      
-      // Simple client-side admin code validation
-      if (!adminCode || adminCode !== 'admin123') {
-        setMessage({ text: 'Ungültiger Admin-Code', type: 'error' })
-        return
-      }
-
-      // Find the team by code
-      const team = teams.find(t => t.code === formData.teamCode)
-      if (!team) {
-        setMessage({ text: 'Team nicht gefunden', type: 'error' })
-        return
-      }
-
-      // Check if Supabase is properly configured
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
-        // Mock response for static export
-        setMessage({ text: 'Punkte erfolgreich vergeben! (Demo-Modus)', type: 'success' })
-        setFormData({ teamCode: '', gameId: '', points: '', reason: '', createdBy: '' })
-        return
-      }
-
-      // Insert directly into points_ledger using Supabase client
-      const { error } = await supabase
-        .from('points_ledger')
-        .insert({
-          team_id: team.id,
+      const response = await fetch('/api/admin/award', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-code': adminCode || ''
+        },
+        body: JSON.stringify({
+          teamCode: formData.teamCode,
+          gameId: formData.gameId,
           points: parseInt(formData.points),
-          source: 'game',
-          ref: `game:${formData.gameId}`,
-          created_by: formData.createdBy,
-          ...(formData.reason && { reason: formData.reason })
-        })
+          reason: formData.reason,
+          createdBy: formData.createdBy
+        }),
+      })
 
-      if (error) {
-        throw new Error(error.message)
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Ein Fehler ist aufgetreten')
       }
 
       setMessage({ text: 'Punkte erfolgreich vergeben!', type: 'success' })
       setFormData({ teamCode: '', gameId: '', points: '', reason: '', createdBy: '' })
       fetchLedgerEntries()
-    } catch (error: unknown) {
-      setMessage({ text: error instanceof Error ? error.message : 'Ein Fehler ist aufgetreten', type: 'error' })
+    } catch (error: any) {
+      setMessage({ text: error.message, type: 'error' })
     } finally {
       setLoading(false)
     }
@@ -185,40 +144,31 @@ export default function AdminAwardForm() {
 
     try {
       const adminCode = localStorage.getItem('adminCode')
-      
-      // Simple client-side admin code validation
-      if (!adminCode || adminCode !== 'admin123') {
-        setMessage({ text: 'Ungültiger Admin-Code', type: 'error' })
-        return
-      }
-
-      // Find the team by code
-      const team = teams.find(t => t.code === teamCode)
-      if (!team) {
-        setMessage({ text: 'Team nicht gefunden', type: 'error' })
-        return
-      }
-
-      // Insert negative points to undo
-      const { error } = await supabase
-        .from('points_ledger')
-        .insert({
-          team_id: team.id,
+      const response = await fetch('/api/admin/award', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-code': adminCode || ''
+        },
+        body: JSON.stringify({
+          teamCode: teamCode,
+          gameId: gameId,
           points: -points,
-          source: 'game',
-          ref: `game:${gameId}`,
-          created_by: createdBy,
-          reason: `Rückgängig: ${entryId}`
-        })
+          reason: `Rückgängig: ${entryId}`,
+          createdBy: createdBy
+        }),
+      })
 
-      if (error) {
-        throw new Error(error.message)
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Ein Fehler ist aufgetreten')
       }
 
       setMessage({ text: 'Eintrag erfolgreich rückgängig gemacht!', type: 'success' })
       fetchLedgerEntries()
-    } catch (error: unknown) {
-      setMessage({ text: error instanceof Error ? error.message : 'Ein Fehler ist aufgetreten', type: 'error' })
+    } catch (error: any) {
+      setMessage({ text: error.message, type: 'error' })
     }
   }
 

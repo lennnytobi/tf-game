@@ -91,10 +91,10 @@ export default function TeamAnswerForm({ selectedTeam }: TeamAnswerFormProps) {
           type: 'error' 
         })
       }
-    } catch (error: unknown) {
+    } catch (error: any) {
       console.error('Error submitting answer:', error)
       setMessage({ 
-        text: error instanceof Error ? error.message : 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 
+        text: error.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', 
         type: 'error' 
       })
     } finally {
