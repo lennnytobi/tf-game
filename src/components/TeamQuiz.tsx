@@ -72,6 +72,18 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
 
   const fetchExistingSubmissions = useCallback(async (questions: Question[]) => {
     try {
+      // Check if Supabase is properly configured
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
+        // Initialize with empty answers for static export
+        setQuestionAnswers(questions.map(q => ({
+          questionId: q.id,
+          answer: '',
+          isCorrect: false,
+          isAnswered: false
+        })))
+        return
+      }
+
       // Fetch existing submissions for this team, ordered by creation time (latest first)
       const { data: submissions, error } = await supabase
         .from('submissions')
@@ -248,6 +260,29 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
     setMessage(null)
 
     try {
+      // Check if Supabase is properly configured
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
+        // Mock response for static export
+        const mockCorrect = answer.toLowerCase().includes('richtig') || answer.toLowerCase().includes('correct')
+        if (mockCorrect) {
+          setQuestionAnswers(prev => prev.map(qa => 
+            qa.questionId === questionId 
+              ? { ...qa, isCorrect: true, isAnswered: true, answer }
+              : qa
+          ))
+          setMessage({ 
+            text: `Richtig! Stresslevel erhöht für ${selectedTeam.name} (Demo-Modus)`, 
+            type: 'success' 
+          })
+        } else {
+          setMessage({ 
+            text: 'Leider falsch. Versuch\'s nochmal. (Tipp: Antwort sollte "richtig" enthalten)', 
+            type: 'error' 
+          })
+        }
+        return
+      }
+
       const { data, error } = await supabase.rpc('submit_quiz_answer', {
         player_uid: `${selectedTeam.code}-1`, // Use team code + dummy player number
         q_id: questionId,

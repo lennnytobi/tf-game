@@ -63,6 +63,23 @@ export default function AdminAwardForm() {
 
   const fetchTeams = async () => {
     try {
+      // Check if Supabase is properly configured
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
+        // Use mock data for static export
+        const mockTeams = [
+          { id: '1', code: 'A', name: 'Team Alpha', sort_order: 1 },
+          { id: '2', code: 'B', name: 'Team Beta', sort_order: 2 },
+          { id: '3', code: 'C', name: 'Team Gamma', sort_order: 3 },
+          { id: '4', code: 'D', name: 'Team Delta', sort_order: 4 },
+          { id: '5', code: 'E', name: 'Team Epsilon', sort_order: 5 },
+          { id: '6', code: 'F', name: 'Team Zeta', sort_order: 6 },
+          { id: '7', code: 'G', name: 'Team Eta', sort_order: 7 },
+          { id: '8', code: 'H', name: 'Team Theta', sort_order: 8 }
+        ]
+        setTeams(mockTeams)
+        return
+      }
+
       const { data, error } = await supabase
         .from('teams')
         .select('*')
@@ -77,6 +94,13 @@ export default function AdminAwardForm() {
 
   const fetchLedgerEntries = async () => {
     try {
+      // Check if Supabase is properly configured
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
+        // Use mock data for static export
+        setLedgerEntries([])
+        return
+      }
+
       const { data, error } = await supabase
         .from('points_ledger')
         .select(`
@@ -117,6 +141,14 @@ export default function AdminAwardForm() {
       const team = teams.find(t => t.code === formData.teamCode)
       if (!team) {
         setMessage({ text: 'Team nicht gefunden', type: 'error' })
+        return
+      }
+
+      // Check if Supabase is properly configured
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
+        // Mock response for static export
+        setMessage({ text: 'Punkte erfolgreich vergeben! (Demo-Modus)', type: 'success' })
+        setFormData({ teamCode: '', gameId: '', points: '', reason: '', createdBy: '' })
         return
       }
 

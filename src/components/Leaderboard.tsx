@@ -22,6 +22,23 @@ export default function Leaderboard() {
 
   const fetchTeamsAndScores = async () => {
     try {
+      // Check if Supabase is properly configured
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co') {
+        // Use mock data for static export
+        const mockTeams = [
+          { id: '1', code: 'A', name: 'Team Alpha', sort_order: 1, score: 5, rank: 1, percentage: 80 },
+          { id: '2', code: 'B', name: 'Team Beta', sort_order: 2, score: 8, rank: 2, percentage: 68 },
+          { id: '3', code: 'C', name: 'Team Gamma', sort_order: 3, score: 12, rank: 3, percentage: 52 },
+          { id: '4', code: 'D', name: 'Team Delta', sort_order: 4, score: 15, rank: 4, percentage: 40 },
+          { id: '5', code: 'E', name: 'Team Epsilon', sort_order: 5, score: 18, rank: 5, percentage: 28 },
+          { id: '6', code: 'F', name: 'Team Zeta', sort_order: 6, score: 20, rank: 6, percentage: 20 },
+          { id: '7', code: 'G', name: 'Team Eta', sort_order: 7, score: 22, rank: 7, percentage: 12 },
+          { id: '8', code: 'H', name: 'Team Theta', sort_order: 8, score: 25, rank: 8, percentage: 0 }
+        ]
+        setTeams(mockTeams)
+        return
+      }
+
       // Fetch teams
       const { data: teamsData, error: teamsError } = await supabase
         .from('teams')
@@ -67,20 +84,22 @@ export default function Leaderboard() {
   useEffect(() => {
     fetchTeamsAndScores()
 
-    // Subscribe to realtime changes
-    const channel = supabase
-      .channel('scores')
-      .on('postgres_changes', { 
-        event: '*', 
-        schema: 'public', 
-        table: 'points_ledger' 
-      }, () => {
-        fetchTeamsAndScores()
-      })
-      .subscribe()
+    // Only subscribe to realtime changes if Supabase is properly configured
+    if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_URL !== 'https://placeholder.supabase.co') {
+      const channel = supabase
+        .channel('scores')
+        .on('postgres_changes', { 
+          event: '*', 
+          schema: 'public', 
+          table: 'points_ledger' 
+        }, () => {
+          fetchTeamsAndScores()
+        })
+        .subscribe()
 
-    return () => {
-      supabase.removeChannel(channel)
+      return () => {
+        supabase.removeChannel(channel)
+      }
     }
   }, [])
 
