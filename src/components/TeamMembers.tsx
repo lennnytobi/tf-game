@@ -153,13 +153,13 @@ export default function TeamMembers() {
         Team-Mitglieder
       </h3>
       
-      <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 gap-3 sm:gap-6">
         {teams.map((team) => {
           const members = teamMembers[team.code] || []
           return (
             <div key={team.id} className="bg-gray-700 rounded-lg p-3 sm:p-4 border border-gray-600">
-              <div className="text-center mb-3">
-                <h4 className="text-sm sm:text-base font-semibold text-white">
+              <div className="text-center mb-2 sm:mb-3">
+                <h4 className="text-xs sm:text-base font-semibold text-white break-words">
                   {team.name}
                 </h4>
               </div>

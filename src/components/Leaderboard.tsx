@@ -113,9 +113,9 @@ export default function Leaderboard() {
         <table className="w-full">
           <thead>
             <tr className="bg-gray-50 dark:bg-gray-700">
-              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">Rang</th>
-              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">Team</th>
-              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">Stresslevel</th>
+              <th className="px-2 sm:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">Rang</th>
+              <th className="px-2 sm:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">Team</th>
+              <th className="px-2 sm:px-6 py-3 sm:py-4 text-right text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 pr-3">Stresslevel</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
@@ -124,17 +124,17 @@ export default function Leaderboard() {
                 key={team.id} 
                 className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
               >
-                <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                   <div className="text-sm sm:text-base font-medium text-gray-900 dark:text-white">
                     {team.rank}
                   </div>
                 </td>
-                <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                   <div className="text-sm sm:text-base font-medium text-gray-900 dark:text-white">
                     {team.name}
                   </div>
                 </td>
-                <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-right">
+                <td className="px-2 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-right pr-3">
                   <div className="text-sm sm:text-base font-bold text-gray-900 dark:text-white">
                     {team.percentage}%
                   </div>

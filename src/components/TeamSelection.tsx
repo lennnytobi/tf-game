@@ -68,11 +68,11 @@ export default function TeamSelection({ onTeamSelect }: TeamSelectionProps) {
           <button
             key={team.id}
             onClick={() => onTeamSelect(team)}
-            className="group relative p-4 rounded-xl border-2 border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-105 hover:shadow-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 hover:from-blue-50 hover:to-blue-100 dark:hover:from-blue-900/20 dark:hover:to-blue-800/20"
+            className="group relative p-4 h-20 rounded-xl border-2 border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-105 hover:shadow-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 hover:from-blue-50 hover:to-blue-100 dark:hover:from-blue-900/20 dark:hover:to-blue-800/20"
           >
-            <div className="flex flex-col items-center space-y-2">
+            <div className="flex flex-col items-center justify-center h-full">
               <div className="text-center">
-                <div className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
+                <div className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors leading-tight">
                   {team.name}
                 </div>
               </div>
