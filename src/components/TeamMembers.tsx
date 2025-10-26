@@ -20,7 +20,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
   'A': [
     { name: 'Liza Sugrobova', role: 'Teamleiter' },
     { name: 'Jennifer Nesterov', role: 'Strategie' },
-    { name: 'Julie Kappeler', role: 'Strategie' },
+    { name: 'Maximilian Wolf', role: 'Strategie' },
     { name: 'Kilian Dörr', role: 'Strategie' },
     { name: 'Paul Dehmel', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
@@ -31,7 +31,6 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Bente Braun', role: 'Strategie' },
     { name: 'Vincent Pfeffer', role: 'Strategie' },
     { name: 'Kalina Antonova', role: 'Strategie' },
-    { name: 'Lonard Kubitza', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
@@ -39,6 +38,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Annalena Pellkofer', role: 'Teamleiter' },
     { name: 'Alexander Majores', role: 'Strategie' },
     { name: 'Marie Ganter', role: 'Strategie' },
+    { name: 'Lonard Kubitza', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
@@ -62,6 +62,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Benjamin Speigl', role: 'Teamleiter' },
     { name: 'Theo Rüdinger', role: 'Strategie' },
     { name: 'Johannes Kask', role: 'Strategie' },
+    { name: 'Julie Kappeler', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
@@ -76,7 +77,6 @@ const teamMembers: { [key: string]: TeamMember[] } = {
   'H': [
     { name: 'Benjamin Rosendahl', role: 'Teamleiter' },
     { name: 'Felix Beckering', role: 'Strategie' },
-    { name: 'Maximilian Wolf', role: 'Strategie' },
     { name: 'Lorenz Tieroff', role: 'Strategie' },
     { name: 'Felix Dümig', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
@@ -165,7 +165,14 @@ export default function TeamMembers() {
               
               <div className="space-y-1">
                 {members.map((member, index) => (
-                  <div key={index} className="text-xs sm:text-sm text-gray-300">
+                  <div 
+                    key={index} 
+                    className={`text-xs sm:text-sm ${
+                      member.name === 'Trainee' 
+                        ? 'text-gray-500 dark:text-gray-500' 
+                        : 'text-gray-300'
+                    }`}
+                  >
                     {member.name}
                   </div>
                 ))}
