@@ -19,32 +19,33 @@ interface TeamMember {
 const teamMembers: { [key: string]: TeamMember[] } = {
   'A': [
     { name: 'Liza Sugrobova', role: 'Teamleiter' },
-    { name: 'Maik Wagenblast', role: 'Strategie' },
-    { name: 'Vincent Füssel', role: 'Technik' },
-    { name: 'Trainee', role: 'Kommunikation' },
-    { name: 'Trainee', role: 'Logistik' }
-  ],
-  'B': [
-    { name: 'Erik Melchner', role: 'Teamleiter' },
-    { name: 'Bente Braun', role: 'Strategie' },
-    { name: 'Jennifer Nesterov', role: 'Technik' },
+    { name: 'Jennifer Nesterov', role: 'Strategie' },
     { name: 'Julie Kappeler', role: 'Strategie' },
     { name: 'Kilian Dörr', role: 'Strategie' },
     { name: 'Paul Dehmel', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
+  'B': [
+    { name: 'Erik Melchner', role: 'Teamleiter' },
+    { name: 'Bente Braun', role: 'Strategie' },
+    { name: 'Vincent Pfeffer', role: 'Strategie' },
+    { name: 'Kalina Antonova', role: 'Strategie' },
+    { name: 'Lonard Kubitza', role: 'Strategie' },
+    { name: 'Trainee', role: 'Kommunikation' },
+    { name: 'Trainee', role: 'Logistik' }
+  ],
   'C': [
     { name: 'Annalena Pellkofer', role: 'Teamleiter' },
     { name: 'Alexander Majores', role: 'Strategie' },
-    { name: 'Phillip Liebold', role: 'Technik' },
+    { name: 'Marie Ganter', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
   'D': [
     { name: 'Jasmin Ramoser', role: 'Teamleiter' },
     { name: 'Quentin Lammel', role: 'Strategie' },
-    { name: 'Anna Krieger', role: 'Technik' },
+    { name: 'Anna Krieger', role: 'Strategie' },
     { name: 'Fabian Kienreich', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
@@ -53,24 +54,22 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Leon Thumm', role: 'Teamleiter' },
     { name: 'Anna Kahlert', role: 'Strategie' },
     { name: 'Victoria Rein', role: 'Teamleiter' },
-    { name: 'Vincent Pfeffer', role: 'Strategie' },
-    { name: 'Kalina Antonova', role: 'Strategie' },
-    { name: 'Lonard Kubitza', role: 'Strategie' },
+    { name: 'Phillip Liebold', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
   'F': [
     { name: 'Benjamin Speigl', role: 'Teamleiter' },
     { name: 'Theo Rüdinger', role: 'Strategie' },
-    { name: 'Marie Ganter', role: 'Technik' },
+    { name: 'Johannes Kask', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
   'G': [
     { name: 'Jakob Wohlhüter', role: 'Teamleiter' },
     { name: 'Bruno Bürger', role: 'Teamleiter' },
-    { name: 'Lorenz Tieroff', role: 'Strategie' },
-    { name: 'Felix Dümig', role: 'Strategie' },
+    { name: 'Maik Wagenblast', role: 'Strategie' },
+    { name: 'Vincent Füssel', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
@@ -78,7 +77,8 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Benjamin Rosendahl', role: 'Teamleiter' },
     { name: 'Felix Beckering', role: 'Strategie' },
     { name: 'Maximilian Wolf', role: 'Strategie' },
-    { name: 'Johannes Kask', role: 'Strategie' },
+    { name: 'Lorenz Tieroff', role: 'Strategie' },
+    { name: 'Felix Dümig', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
@@ -119,14 +119,14 @@ export default function TeamMembers() {
       console.error('Error fetching teams:', error)
       // Fallback to mock teams if database fails
       const mockTeams = [
-        { id: '1', code: 'A', name: 'BDSUrlauber', sort_order: 1 },
-        { id: '2', code: 'B', name: 'Evershots Sutherland', sort_order: 2 },
-        { id: '3', code: 'C', name: 'Freibier und Recht', sort_order: 3 },
+        { id: '1', code: 'A', name: 'Evershots Sutherland', sort_order: 1 },
+        { id: '2', code: 'B', name: 'No-Cap-Gemini', sort_order: 2 },
+        { id: '3', code: 'C', name: 'Pain & Company', sort_order: 3 },
         { id: '4', code: 'D', name: 'Oliver Weinmann', sort_order: 4 },
-        { id: '5', code: 'E', name: 'NoCapGemini', sort_order: 5 },
-        { id: '6', code: 'F', name: 'Pain & Company', sort_order: 6 },
-        { id: '7', code: 'G', name: 'Garching Consulting Group', sort_order: 7 },
-        { id: '8', code: 'H', name: 'Beering Point', sort_order: 8 },
+        { id: '5', code: 'E', name: 'Freibier & Recht', sort_order: 5 },
+        { id: '6', code: 'F', name: 'Beering Point', sort_order: 6 },
+        { id: '7', code: 'G', name: 'BDSUrlauber', sort_order: 7 },
+        { id: '8', code: 'H', name: 'Garching Consulting Club', sort_order: 8 },
         { id: '9', code: 'I', name: 'Goldman Stanley', sort_order: 9 }
       ]
       setTeams(mockTeams)
