@@ -4,37 +4,42 @@ import LogoLoop from './LogoLoop'
 
 const teamLogos = [
   {
-    src: '/BDSU.png',
+    src: '/BDSU website logo.png',
     alt: 'BDSU',
     title: 'BDSU'
   },
   {
-    src: '/Evershots Sutherland.png',
+    src: '/Beering point website logo.png',
+    alt: 'Beering Point',
+    title: 'Beering Point'
+  },
+  {
+    src: '/evershots sutherland website logo.png',
     alt: 'Evershots Sutherland',
     title: 'Evershots Sutherland'
   },
   {
-    src: '/Garching Consulting Group-logo.png',
+    src: '/Freibier und Recht website logo.png',
+    alt: 'Freibier und Recht',
+    title: 'Freibier und Recht'
+  },
+  {
+    src: '/Garching Consulting Group website logo.png',
     alt: 'Garching Consulting Group',
     title: 'Garching Consulting Group'
   },
   {
-    src: '/goldman stanley-logo.png',
-    alt: 'Goldman Stanley',
-    title: 'Goldman Stanley'
+    src: '/nocapgemini website logo.png',
+    alt: 'NoCapGemini',
+    title: 'NoCapGemini'
   },
   {
-    src: '/nocapgemini-logo.png',
-    alt: 'No Capgemini',
-    title: 'No Capgemini'
-  },
-  {
-    src: '/oliver weinmann-logo.png',
+    src: '/oliver weinmann website logo.png',
     alt: 'Oliver Weinmann',
     title: 'Oliver Weinmann'
   },
   {
-    src: '/Pain and Company-logo.png',
+    src: '/Pain and Company website logo.png',
     alt: 'Pain and Company',
     title: 'Pain and Company'
   }
