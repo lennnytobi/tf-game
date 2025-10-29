@@ -52,7 +52,7 @@ export default function TeamLogos() {
         logos={teamLogos}
         speed={40}
         direction="left"
-        logoHeight={48}
+        logoHeight={64}
         gap={48}
         pauseOnHover={true}
         fadeOut={true}

@@ -49,8 +49,10 @@
 .logoloop__item img {
   height: var(--logoloop-logoHeight);
   width: auto;
+  max-height: var(--logoloop-logoHeight);
   display: block;
   object-fit: contain;
+  object-position: center;
   image-rendering: -webkit-optimize-contrast;
   -webkit-user-drag: none;
   pointer-events: none;
