@@ -29,8 +29,8 @@ const teamMembers: { [key: string]: TeamMember[] } = {
   'B': [
     { name: 'Erik Melchner', role: 'Teamleiter' },
     { name: 'Vincent Pfeffer', role: 'Strategie' },
+    { name: 'Julie Kappeler', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
-    { name: 'Trainee', role: 'Logistik' },
     { name: 'Trainee', role: 'Logistik' },
     { name: 'Trainee', role: 'Logistik' },
     { name: 'Trainee', role: 'Logistik' }
@@ -65,7 +65,6 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Benjamin Speigl', role: 'Teamleiter' },
     { name: 'Theo Rüdinger', role: 'Strategie' },
     { name: 'Johannes Kask', role: 'Strategie' },
-    { name: 'Julie Kappeler', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' },
     { name: 'Trainee', role: 'Logistik' }

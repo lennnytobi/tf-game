@@ -105,7 +105,7 @@ export default function Leaderboard() {
       
       <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
         <p className="text-sm text-blue-800 dark:text-blue-200 text-center">
-          🏆 Niedriges Stresslevel = Bessere Leistung! Jede richtige Antwort erhöht das Stresslevel.
+          🏆 Niedriges Stresslevel = Bessere Leistung! Jede richtige Antwort verringert das Stresslevel.
         </p>
       </div>
       
