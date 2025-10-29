@@ -21,16 +21,13 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Liza Sugrobova', role: 'Teamleiter' },
     { name: 'Jennifer Nesterov', role: 'Strategie' },
     { name: 'Maximilian Wolf', role: 'Strategie' },
-    { name: 'Kilian Dörr', role: 'Strategie' },
     { name: 'Paul Dehmel', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
   'B': [
     { name: 'Erik Melchner', role: 'Teamleiter' },
-    { name: 'Bente Braun', role: 'Strategie' },
     { name: 'Vincent Pfeffer', role: 'Strategie' },
-    { name: 'Kalina Antonova', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
@@ -38,7 +35,6 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Annalena Pellkofer', role: 'Teamleiter' },
     { name: 'Quentin Lammel', role: 'Strategie' },
     { name: 'Marie Ganter', role: 'Strategie' },
-    { name: 'Lonard Kubitza', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' }
   ],
@@ -79,7 +75,6 @@ const teamMembers: { [key: string]: TeamMember[] } = {
   'H': [
     { name: 'Benjamin Rosendahl', role: 'Teamleiter' },
     { name: 'Felix Beckering', role: 'Strategie' },
-    { name: 'Lorenz Tieroff', role: 'Strategie' },
     { name: 'Felix Dümig', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' },
@@ -129,7 +124,7 @@ export default function TeamMembers() {
         { id: '5', code: 'E', name: 'Freibier & Recht', sort_order: 5 },
         { id: '6', code: 'F', name: 'Beering Point', sort_order: 6 },
         { id: '7', code: 'G', name: 'BDSUrlauber', sort_order: 7 },
-        { id: '8', code: 'H', name: 'Garching Consulting Club', sort_order: 8 },
+        { id: '8', code: 'H', name: 'Garching Consulting Group', sort_order: 8 },
         { id: '9', code: 'I', name: 'Goldman Stanley', sort_order: 9 }
       ]
       setTeams(mockTeams)
