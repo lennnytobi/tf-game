@@ -31,6 +31,8 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Vincent Pfeffer', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' },
+    { name: 'Trainee', role: 'Logistik' },
+    { name: 'Trainee', role: 'Logistik' },
     { name: 'Trainee', role: 'Logistik' }
   ],
   'C': [
@@ -56,6 +58,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Victoria Rein', role: 'Teamleiter' },
     { name: 'Phillip Liebold', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
+    { name: 'Trainee', role: 'Logistik' },
     { name: 'Trainee', role: 'Logistik' }
   ],
   'F': [
@@ -64,6 +67,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Johannes Kask', role: 'Strategie' },
     { name: 'Julie Kappeler', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
+    { name: 'Trainee', role: 'Logistik' },
     { name: 'Trainee', role: 'Logistik' }
   ],
   'G': [
@@ -81,6 +85,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Felix Dümig', role: 'Strategie' },
     { name: 'Trainee', role: 'Kommunikation' },
     { name: 'Trainee', role: 'Logistik' },
+    { name: 'Trainee', role: 'Logistik' },
     { name: 'Trainee', role: 'Logistik' }
   ],
   'I': [
@@ -88,9 +93,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Simon Feiertag', role: 'Strategie' },
     { name: 'Paul Peters', role: 'Technik' },
     { name: 'Franziska Holzmann', role: 'Kommunikation' },
-    { name: 'Finn Appel', role: 'Logistik' },
-    { name: 'Trainee', role: 'Logistik' },
-    { name: 'Trainee', role: 'Logistik' }
+    { name: 'Finn Appel', role: 'Logistik' }
   ]
 }
 
