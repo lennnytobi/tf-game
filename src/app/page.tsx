@@ -8,7 +8,7 @@ import TeamSelection from '@/components/TeamSelection'
 import TeamQuiz from '@/components/TeamQuiz'
 import MapView from '@/components/MapView'
 import TeamLogos from '@/components/TeamLogos'
-import DynamicLanyardHeader from '@/components/DynamicLanyardHeader'
+import LanyardHeader from '@/components/LanyardHeader'
 
 interface Team {
   id: string
@@ -61,8 +61,8 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 py-4 sm:py-8">
-        {/* Dynamic 3D Lanyard Header */}
-        <DynamicLanyardHeader />
+        {/* Lanyard Header */}
+        <LanyardHeader />
 
         {/* Description */}
         <div className="mb-6">
