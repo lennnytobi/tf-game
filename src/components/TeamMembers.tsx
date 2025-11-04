@@ -24,7 +24,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Paul Dehmel', role: 'Strategie' },
     { name: 'Jost Warmers', role: 'Kommunikation' },
     { name: 'Leticia Bidoggia', role: 'Logistik' },
-    { name: 'Trainee', role: 'Logistik' }
+    { name: 'Jonas Gebauer', role: 'Logistik' }
   ],
   'B': [
     { name: 'Erik Melchner', role: 'Teamleiter' },
@@ -41,7 +41,8 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Marie Ganter', role: 'Strategie' },
     { name: 'Julia Yilin Fu', role: 'Kommunikation' },
     { name: 'Jonas Reimer', role: 'Logistik' },
-    { name: 'Trainee', role: 'Logistik' }
+    { name: 'Max Volk', role: 'Logistik' },
+    { name: 'Felix Müller', role: 'Logistik' }
   ],
   'D': [
     { name: 'Jasmin Ramoser', role: 'Teamleiter' },
