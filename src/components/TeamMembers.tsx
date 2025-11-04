@@ -19,7 +19,6 @@ interface TeamMember {
 const teamMembers: { [key: string]: TeamMember[] } = {
   'A': [
     { name: 'Liza Sugrobova', role: 'Teamleiter' },
-    { name: 'Jennifer Nesterov', role: 'Strategie' },
     { name: 'Maximilian Wolf', role: 'Strategie' },
     { name: 'Paul Dehmel', role: 'Strategie' },
     { name: 'Jost Warmers', role: 'Kommunikation' },
@@ -32,8 +31,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Julie Kappeler', role: 'Strategie' },
     { name: 'Paul Wirth', role: 'Kommunikation' },
     { name: 'Marlene Bookhagen', role: 'Logistik' },
-    { name: 'Lukas Dobmeier', role: 'Logistik' },
-    { name: 'Trainee', role: 'Logistik' }
+    { name: 'Lukas Dobmeier', role: 'Logistik' }
   ],
   'C': [
     { name: 'Annalena Pellkofer', role: 'Teamleiter' },
@@ -41,8 +39,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Marie Ganter', role: 'Strategie' },
     { name: 'Julia Yilin Fu', role: 'Kommunikation' },
     { name: 'Jonas Reimer', role: 'Logistik' },
-    { name: 'Max Volk', role: 'Logistik' },
-    { name: 'Felix Müller', role: 'Logistik' }
+    { name: 'Max Volk', role: 'Logistik' }
   ],
   'D': [
     { name: 'Jasmin Ramoser', role: 'Teamleiter' },
@@ -50,8 +47,7 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Anna Krieger', role: 'Strategie' },
     { name: 'Fabian Kienreich', role: 'Strategie' },
     { name: 'Katharina Barr', role: 'Kommunikation' },
-    { name: 'Johannes Rupp', role: 'Logistik' },
-    { name: 'Linus Klett', role: 'Logistik' }
+    { name: 'Johannes Rupp', role: 'Logistik' }
   ],
   'E': [
     { name: 'Leon Thumm', role: 'Teamleiter' },
@@ -59,34 +55,32 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Victoria Rein', role: 'Teamleiter' },
     { name: 'Phillip Liebold', role: 'Strategie' },
     { name: 'Julia Gsell', role: 'Kommunikation' },
-    { name: 'Hendrik Jaritz', role: 'Logistik' },
-    { name: 'Trainee', role: 'Logistik' }
+    { name: 'Hendrik Jaritz', role: 'Logistik' }
   ],
   'F': [
     { name: 'Benjamin Speigl', role: 'Teamleiter' },
     { name: 'Theo Rüdinger', role: 'Strategie' },
     { name: 'Johannes Kask', role: 'Strategie' },
+    { name: 'Jennifer Nesterov', role: 'Strategie' },
     { name: 'Dorian Laforet', role: 'Kommunikation' },
-    { name: 'Berenike Keller', role: 'Logistik' },
-    { name: 'Trainee', role: 'Logistik' }
+    { name: 'Berenike Keller', role: 'Logistik' }
   ],
   'G': [
     { name: 'Jakob Wohlhüter', role: 'Teamleiter' },
     { name: 'Bruno Bürger', role: 'Teamleiter' },
     { name: 'Maik Wagenblast', role: 'Strategie' },
     { name: 'Vincent Füssel', role: 'Strategie' },
+    { name: 'Felix Müller', role: 'Strategie' },
     { name: 'Nele Ratzka', role: 'Kommunikation' },
-    { name: 'Elisa Smirnov', role: 'Logistik' },
-    { name: 'Trainee', role: 'Logistik' }
+    { name: 'Elisa Smirnov', role: 'Logistik' }
   ],
   'H': [
     { name: 'Benjamin Rosendahl', role: 'Teamleiter' },
     { name: 'Felix Beckering', role: 'Strategie' },
     { name: 'Felix Dümig', role: 'Strategie' },
+    { name: 'Linus Klett', role: 'Strategie' },
     { name: 'Noah Straube', role: 'Kommunikation' },
-    { name: 'Fabian Stützer', role: 'Logistik' },
-    { name: 'Trainee', role: 'Logistik' },
-    { name: 'Trainee', role: 'Logistik' }
+    { name: 'Fabian Stützer', role: 'Logistik' }
   ],
   'I': [
     { name: 'Tobias Glatz', role: 'Teamleiter' },
