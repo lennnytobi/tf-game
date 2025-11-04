@@ -39,7 +39,8 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Marie Ganter', role: 'Strategie' },
     { name: 'Julia Yilin Fu', role: 'Kommunikation' },
     { name: 'Jonas Reimer', role: 'Logistik' },
-    { name: 'Max Volk', role: 'Logistik' }
+    { name: 'Max Volk', role: 'Logistik' },
+    { name: 'Maximilian Matern', role: 'Logistik' }
   ],
   'D': [
     { name: 'Jasmin Ramoser', role: 'Teamleiter' },
@@ -48,7 +49,8 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Fabian Kienreich', role: 'Strategie' },
     { name: 'Katharina Barr', role: 'Kommunikation' },
     { name: 'Johannes Rupp', role: 'Logistik' },
-    { name: 'Max Appel', role: 'Logistik' }
+    { name: 'Max Appel', role: 'Logistik' },
+    { name: 'Maximilian Clemens', role: 'Logistik' }
   ],
   'E': [
     { name: 'Leon Thumm', role: 'Teamleiter' },
@@ -64,7 +66,8 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Johannes Kask', role: 'Strategie' },
     { name: 'Jennifer Nesterov', role: 'Strategie' },
     { name: 'Dorian Laforet', role: 'Kommunikation' },
-    { name: 'Berenike Keller', role: 'Logistik' }
+    { name: 'Berenike Keller', role: 'Logistik' },
+    { name: 'Emelie Veith', role: 'Logistik' }
   ],
   'G': [
     { name: 'Jakob Wohlhüter', role: 'Teamleiter' },
