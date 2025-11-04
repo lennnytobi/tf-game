@@ -47,7 +47,8 @@ const teamMembers: { [key: string]: TeamMember[] } = {
     { name: 'Anna Krieger', role: 'Strategie' },
     { name: 'Fabian Kienreich', role: 'Strategie' },
     { name: 'Katharina Barr', role: 'Kommunikation' },
-    { name: 'Johannes Rupp', role: 'Logistik' }
+    { name: 'Johannes Rupp', role: 'Logistik' },
+    { name: 'Max Appel', role: 'Logistik' }
   ],
   'E': [
     { name: 'Leon Thumm', role: 'Teamleiter' },
