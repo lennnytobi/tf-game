@@ -10,88 +10,80 @@ interface Team {
   sort_order: number
 }
 
-interface TeamMember {
-  name: string
-  role: string
-}
-
 // Team members for each team
-const teamMembers: { [key: string]: TeamMember[] } = {
+const teamMembers: { [key: string]: string[] } = {
   'A': [
-    { name: 'Liza Sugrobova', role: 'Teamleiter' },
-    { name: 'Maximilian Wolf', role: 'Strategie' },
-    { name: 'Paul Dehmel', role: 'Strategie' },
-    { name: 'Jost Warmers', role: 'Kommunikation' },
-    { name: 'Leticia Bidoggia', role: 'Logistik' },
-    { name: 'Jonas Gebauer', role: 'Logistik' }
+    'Liza Sugrobova',
+    'Maximilian Wolf',
+    'Paul Dehmel',
+    'Jost Warmers',
+    'Leticia Bidoggia',
+    'Jonas Gebauer'
   ],
   'B': [
-    { name: 'Erik Melchner', role: 'Teamleiter' },
-    { name: 'Vincent Pfeffer', role: 'Strategie' },
-    { name: 'Julie Kappeler', role: 'Strategie' },
-    { name: 'Paul Wirth', role: 'Kommunikation' },
-    { name: 'Marlene Bookhagen', role: 'Logistik' },
-    { name: 'Lukas Dobmeier', role: 'Logistik' }
+    'Erik Melchner',
+    'Vincent Pfeffer',
+    'Julie Kappeler',
+    'Paul Wirth',
+    'Marlene Bookhagen',
+    'Lukas Dobmeier'
   ],
   'C': [
-    { name: 'Annalena Pellkofer', role: 'Teamleiter' },
-    { name: 'Quentin Lammel', role: 'Strategie' },
-    { name: 'Marie Ganter', role: 'Strategie' },
-    { name: 'Julia Yilin Fu', role: 'Kommunikation' },
-    { name: 'Jonas Reimer', role: 'Logistik' },
-    { name: 'Max Volk', role: 'Logistik' },
-    { name: 'Maximilian Matern', role: 'Logistik' }
+    'Quentin Lammel',
+    'Marie Ganter',
+    'Julia Yilin Fu',
+    'Jonas Reimer',
+    'Max Volk',
+    'Maximilian Matern'
   ],
   'D': [
-    { name: 'Jasmin Ramoser', role: 'Teamleiter' },
-    { name: 'Alexander Majores', role: 'Strategie' },
-    { name: 'Anna Krieger', role: 'Strategie' },
-    { name: 'Fabian Kienreich', role: 'Strategie' },
-    { name: 'Katharina Barr', role: 'Kommunikation' },
-    { name: 'Johannes Rupp', role: 'Logistik' },
-    { name: 'Max Appel', role: 'Logistik' },
-    { name: 'Maximilian Clemens', role: 'Logistik' }
+    'Jasmin Ramoser',
+    'Alexander Majores',
+    'Anna Krieger',
+    'Fabian Kienreich',
+    'Katharina Barr',
+    'Johannes Rupp',
+    'Maximilian Clemens'
   ],
   'E': [
-    { name: 'Leon Thumm', role: 'Teamleiter' },
-    { name: 'Anna Kahlert', role: 'Strategie' },
-    { name: 'Victoria Rein', role: 'Teamleiter' },
-    { name: 'Phillip Liebold', role: 'Strategie' },
-    { name: 'Julia Gsell', role: 'Kommunikation' },
-    { name: 'Hendrik Jaritz', role: 'Logistik' }
+    'Leon Thumm',
+    'Anna Kahlert',
+    'Victoria Rein',
+    'Phillip Liebold',
+    'Julia Gsell',
+    'Hendrik Jaritz'
   ],
   'F': [
-    { name: 'Benjamin Speigl', role: 'Teamleiter' },
-    { name: 'Theo Rüdinger', role: 'Strategie' },
-    { name: 'Johannes Kask', role: 'Strategie' },
-    { name: 'Jennifer Nesterov', role: 'Strategie' },
-    { name: 'Dorian Laforet', role: 'Kommunikation' },
-    { name: 'Berenike Keller', role: 'Logistik' },
-    { name: 'Emelie Veith', role: 'Logistik' }
+    'Benjamin Speigl',
+    'Theo Rüdinger',
+    'Johannes Kask',
+    'Jennifer Nesterov',
+    'Dorian Laforet',
+    'Berenike Keller',
+    'Emelie Veith'
   ],
   'G': [
-    { name: 'Jakob Wohlhüter', role: 'Teamleiter' },
-    { name: 'Bruno Bürger', role: 'Teamleiter' },
-    { name: 'Maik Wagenblast', role: 'Strategie' },
-    { name: 'Vincent Füssel', role: 'Strategie' },
-    { name: 'Felix Müller', role: 'Strategie' },
-    { name: 'Nele Ratzka', role: 'Kommunikation' },
-    { name: 'Elisa Smirnov', role: 'Logistik' }
+    'Bruno Bürger',
+    'Maik Wagenblast',
+    'Vincent Füssel',
+    'Felix Müller',
+    'Nele Ratzka',
+    'Elisa Smirnov'
   ],
   'H': [
-    { name: 'Benjamin Rosendahl', role: 'Teamleiter' },
-    { name: 'Felix Beckering', role: 'Strategie' },
-    { name: 'Felix Dümig', role: 'Strategie' },
-    { name: 'Linus Klett', role: 'Strategie' },
-    { name: 'Noah Straube', role: 'Kommunikation' },
-    { name: 'Fabian Stützer', role: 'Logistik' }
+    'Benjamin Rosendahl',
+    'Felix Beckering',
+    'Felix Dümig',
+    'Linus Klett',
+    'Noah Straube',
+    'Fabian Stützer'
   ],
   'I': [
-    { name: 'Tobias Glatz', role: 'Teamleiter' },
-    { name: 'Simon Feiertag', role: 'Strategie' },
-    { name: 'Paul Peters', role: 'Technik' },
-    { name: 'Franziska Holzmann', role: 'Kommunikation' },
-    { name: 'Finn Appel', role: 'Logistik' }
+    'Tobias Glatz',
+    'Simon Feiertag',
+    'Paul Peters',
+    'Franziska Holzmann',
+    'Finn Appel'
   ]
 }
 
@@ -171,13 +163,9 @@ export default function TeamMembers() {
                 {members.map((member, index) => (
                   <div 
                     key={index} 
-                    className={`text-xs sm:text-sm ${
-                      member.name === 'Trainee' 
-                        ? 'text-gray-500 dark:text-gray-500' 
-                        : 'text-gray-300'
-                    }`}
+                    className="text-xs sm:text-sm text-gray-300"
                   >
-                    {member.name}
+                    {member}
                   </div>
                 ))}
               </div>
