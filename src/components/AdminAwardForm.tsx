@@ -244,46 +244,6 @@ export default function AdminAwardForm() {
 
   return (
     <div className="space-y-6">
-      {/* Quiz Control */}
-      <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg shadow-lg p-4 sm:p-6 border-2 border-purple-200 dark:border-purple-700">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-4">
-          🎯 Quiz Kontrolle
-        </h2>
-        
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Quiz Status: <span className={`font-bold ${quizEnabled ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                {quizEnabled ? '✅ AKTIV' : '🔒 DEAKTIVIERT'}
-              </span>
-            </p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">
-              {quizEnabled 
-                ? 'Teams können die Quiz-Fragen sehen und beantworten'
-                : 'Quiz-Fragen sind für alle Teams versteckt'}
-            </p>
-          </div>
-          
-          <button
-            onClick={toggleQuiz}
-            disabled={quizLoading}
-            className={`px-6 py-3 rounded-lg font-bold text-white transition-all transform hover:scale-105 ${
-              quizEnabled 
-                ? 'bg-red-600 hover:bg-red-700' 
-                : 'bg-green-600 hover:bg-green-700'
-            } disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
-          >
-            {quizLoading ? '...' : quizEnabled ? '🔒 Quiz Deaktivieren' : '✅ Quiz Aktivieren'}
-          </button>
-        </div>
-        
-        <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg">
-          <p className="text-xs text-yellow-800 dark:text-yellow-200">
-            ⚠️ <strong>Wichtig:</strong> Nur aktivieren, wenn das Quiz starten soll! Nach Aktivierung sehen alle Teams sofort ihre Fragen.
-          </p>
-        </div>
-      </div>
-
       {/* Award Form */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6">
         <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-6">Punkte vergeben</h2>
@@ -457,6 +417,46 @@ export default function AdminAwardForm() {
               ))}
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* Quiz Control */}
+      <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg shadow-lg p-4 sm:p-6 border-2 border-purple-200 dark:border-purple-700">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-4">
+          🎯 Quiz Kontrolle
+        </h2>
+        
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Quiz Status: <span className={`font-bold ${quizEnabled ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                {quizEnabled ? '✅ AKTIV' : '🔒 DEAKTIVIERT'}
+              </span>
+            </p>
+            <p className="text-xs text-gray-600 dark:text-gray-400">
+              {quizEnabled 
+                ? 'Teams können die Quiz-Fragen sehen und beantworten'
+                : 'Quiz-Fragen sind für alle Teams versteckt'}
+            </p>
+          </div>
+          
+          <button
+            onClick={toggleQuiz}
+            disabled={quizLoading}
+            className={`px-6 py-3 rounded-lg font-bold text-white transition-all transform hover:scale-105 ${
+              quizEnabled 
+                ? 'bg-red-600 hover:bg-red-700' 
+                : 'bg-green-600 hover:bg-green-700'
+            } disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
+          >
+            {quizLoading ? '...' : quizEnabled ? '🔒 Quiz Deaktivieren' : '✅ Quiz Aktivieren'}
+          </button>
+        </div>
+        
+        <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg">
+          <p className="text-xs text-yellow-800 dark:text-yellow-200">
+            ⚠️ <strong>Wichtig:</strong> Nur aktivieren, wenn das Quiz starten soll! Nach Aktivierung sehen alle Teams sofort ihre Fragen.
+          </p>
         </div>
       </div>
     </div>
