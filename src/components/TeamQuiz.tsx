@@ -378,20 +378,9 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
                   {index + 1}
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center justify-between mb-1">
-                    <h4 className="text-base font-semibold text-white">
-                      {question.prompt}
-                    </h4>
-                    <span className={`text-xs font-medium px-2 py-1 rounded ${
-                      question.difficulty === 'easy' ? 'bg-green-900/30 text-green-300' :
-                      question.difficulty === 'medium' ? 'bg-yellow-900/30 text-yellow-300' :
-                      'bg-red-900/30 text-red-300'
-                    }`}>
-                      {question.difficulty === 'easy' ? 'Leicht' :
-                       question.difficulty === 'medium' ? 'Mittel' :
-                       'Schwer'}
-                    </span>
-                  </div>
+                  <h4 className="text-base font-semibold text-white mb-1">
+                    {question.prompt}
+                  </h4>
                 </div>
               </div>
 

@@ -109,18 +109,9 @@ export default function TeamQuestions({ selectedTeam, onBack }: TeamQuestionsPro
                   {index + 1}
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-base font-semibold text-gray-900 dark:text-white">
-                      {question.prompt}
-                    </h4>
-                    <span className={`text-xs font-medium px-2 py-1 rounded ${
-                      question.difficulty === 'easy' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' :
-                      question.difficulty === 'medium' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300' :
-                      'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300'
-                    }`}>
-                      {difficultyLabel[question.difficulty as keyof typeof difficultyLabel]}
-                    </span>
-                  </div>
+                  <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
+                    {question.prompt}
+                  </h4>
                 </div>
               </div>
             </div>
