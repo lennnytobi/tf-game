@@ -7,10 +7,11 @@ ADD COLUMN IF NOT EXISTS team_code text REFERENCES teams(code);
 TRUNCATE quiz_questions RESTART IDENTITY CASCADE;
 
 -- Insert questions with difficulty and team assignment
--- Each team gets 3 questions: 1 easy, 1 medium, 1 hard
+-- Each team (A-H) gets 3 questions: 1 easy, 1 medium, 1 hard
+-- Team I (Goldman Stanley) is the organization team and gets NO questions
 -- Questions are reused across teams and evenly distributed
 
--- EASY QUESTIONS (4 unique questions distributed across 9 teams)
+-- EASY QUESTIONS (4 unique questions distributed across 8 teams)
 -- Q1: Celonis - Teams A, B (2 teams)
 INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('In welchem Jahr wurde Celonis gegründet?', '2011', 'easy', 'A'),
@@ -26,13 +27,12 @@ INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('Welcher ACler ist unter dem Namen "Doc" bekannt?', 'simon feiertag', 'easy', 'E'),
 ('Welcher ACler ist unter dem Namen "Doc" bekannt?', 'simon feiertag', 'easy', 'F');
 
--- Q4: Deichsler - Teams G, H, I (3 teams)
+-- Q4: Deichsler - Teams G, H (2 teams)
 INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('Welcher ACler ist unter dem Namen "Deichsler" bekannt?', 'maik wagenblast', 'easy', 'G'),
-('Welcher ACler ist unter dem Namen "Deichsler" bekannt?', 'maik wagenblast', 'easy', 'H'),
-('Welcher ACler ist unter dem Namen "Deichsler" bekannt?', 'maik wagenblast', 'easy', 'I');
+('Welcher ACler ist unter dem Namen "Deichsler" bekannt?', 'maik wagenblast', 'easy', 'H');
 
--- MEDIUM QUESTIONS (3 unique questions distributed across 9 teams)
+-- MEDIUM QUESTIONS (3 unique questions distributed across 8 teams)
 -- Q1: AC-Rot Hex - Teams A, B, C (3 teams)
 INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('Was ist der Hex Code des "AC-Rot"?', '#993333', 'medium', 'A'),
@@ -45,25 +45,23 @@ INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('Wer war der erste offizielle Vorstand von TPM?', 'bastian burger', 'medium', 'E'),
 ('Wer war der erste offizielle Vorstand von TPM?', 'bastian burger', 'medium', 'F');
 
--- Q3: Verdi Döner - Teams G, H, I (3 teams)
+-- Q3: Verdi Döner - Teams G, H (2 teams)
 INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('Welcher Döner ist laut dem AC-Dönertasting der beste Döner Münchens?', 'verdi döner', 'medium', 'G'),
-('Welcher Döner ist laut dem AC-Dönertasting der beste Döner Münchens?', 'verdi döner', 'medium', 'H'),
-('Welcher Döner ist laut dem AC-Dönertasting der beste Döner Münchens?', 'verdi döner', 'medium', 'I');
+('Welcher Döner ist laut dem AC-Dönertasting der beste Döner Münchens?', 'verdi döner', 'medium', 'H');
 
--- HARD QUESTIONS (2 unique questions distributed across 9 teams)
--- Q1: 822 Mitglieder - Teams A, B, C, D, E (5 teams)
+-- HARD QUESTIONS (2 unique questions distributed across 8 teams)
+-- Q1: 822 Mitglieder - Teams A, B, C, D (4 teams)
 INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('Wie viele Mitglieder wurden jemals bei Academy Consult aufgenommen?', '822', 'hard', 'A'),
 ('Wie viele Mitglieder wurden jemals bei Academy Consult aufgenommen?', '822', 'hard', 'B'),
 ('Wie viele Mitglieder wurden jemals bei Academy Consult aufgenommen?', '822', 'hard', 'C'),
-('Wie viele Mitglieder wurden jemals bei Academy Consult aufgenommen?', '822', 'hard', 'D'),
-('Wie viele Mitglieder wurden jemals bei Academy Consult aufgenommen?', '822', 'hard', 'E');
+('Wie viele Mitglieder wurden jemals bei Academy Consult aufgenommen?', '822', 'hard', 'D');
 
--- Q2: 32 ACler - Teams F, G, H, I (4 teams)
+-- Q2: 32 ACler - Teams E, F, G, H (4 teams)
 INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
+('Wie viele ACler waren im August 2015 auf der AC Insel dabei?', '32', 'hard', 'E'),
 ('Wie viele ACler waren im August 2015 auf der AC Insel dabei?', '32', 'hard', 'F'),
 ('Wie viele ACler waren im August 2015 auf der AC Insel dabei?', '32', 'hard', 'G'),
-('Wie viele ACler waren im August 2015 auf der AC Insel dabei?', '32', 'hard', 'H'),
-('Wie viele ACler waren im August 2015 auf der AC Insel dabei?', '32', 'hard', 'I');
+('Wie viele ACler waren im August 2015 auf der AC Insel dabei?', '32', 'hard', 'H');
 
