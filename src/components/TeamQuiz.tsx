@@ -34,9 +34,42 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
   const [loading, setLoading] = useState<{ [key: number]: boolean }>({})
   const [message, setMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null)
   const [questionsLoading, setQuestionsLoading] = useState(true)
+  const [quizEnabled, setQuizEnabled] = useState(false)
 
   useEffect(() => {
-    fetchTeamQuestions()
+    checkQuizEnabled()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedTeam])
+
+  const checkQuizEnabled = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('app_settings')
+        .select('value')
+        .eq('key', 'quiz_enabled')
+        .single()
+      
+      if (error) throw error
+      
+      const enabled = data?.value === 'true'
+      setQuizEnabled(enabled)
+      
+      if (enabled) {
+        fetchTeamQuestions()
+      } else {
+        setQuestionsLoading(false)
+      }
+    } catch (error) {
+      console.error('Error checking quiz status:', error)
+      setQuizEnabled(false)
+      setQuestionsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (quizEnabled) {
+      fetchTeamQuestions()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTeam])
 
@@ -360,7 +393,20 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
       </div>
 
       {/* Questions with integrated answer fields */}
-      {questionsLoading ? (
+      {!quizEnabled ? (
+        <div className="bg-gradient-to-r from-yellow-900/20 to-orange-900/20 rounded-lg p-8 border-2 border-yellow-700">
+          <div className="text-center">
+            <div className="text-6xl mb-4">🔒</div>
+            <h3 className="text-xl font-bold text-yellow-400 mb-2">Quiz noch nicht verfügbar</h3>
+            <p className="text-gray-300">
+              Das Quiz ist derzeit noch nicht freigeschaltet.
+            </p>
+            <p className="text-sm text-gray-400 mt-2">
+              Bitte warte auf die Freischaltung durch das Organisationsteam.
+            </p>
+          </div>
+        </div>
+      ) : questionsLoading ? (
         <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <div className="flex items-center justify-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
