@@ -35,8 +35,8 @@ const teamLogos = [
   },
   {
     src: '/oliver weinmann website logo.png',
-    alt: 'Oliver Weinmann',
-    title: 'Oliver Weinmann'
+    alt: 'Oliver Weinman',
+    title: 'Oliver Weinman'
   },
   {
     src: '/Pain and Company website logo.png',

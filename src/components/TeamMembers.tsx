@@ -126,7 +126,7 @@ export default function TeamMembers() {
         { id: '1', code: 'A', name: 'Evershots Sutherland', sort_order: 1 },
         { id: '2', code: 'B', name: 'No-Cap-Gemini', sort_order: 2 },
         { id: '3', code: 'C', name: 'Pain & Company', sort_order: 3 },
-        { id: '4', code: 'D', name: 'Oliver Weinmann', sort_order: 4 },
+        { id: '4', code: 'D', name: 'Oliver Weinman', sort_order: 4 },
         { id: '5', code: 'E', name: 'Freibier & Recht', sort_order: 5 },
         { id: '6', code: 'F', name: 'Beering Point', sort_order: 6 },
         { id: '7', code: 'G', name: 'BDSUrlauber', sort_order: 7 },
