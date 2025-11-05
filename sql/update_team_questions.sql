@@ -86,7 +86,7 @@ begin
   if correct then
     begin
       insert into points_ledger(team_id, points, source, ref)
-      values (team_rec.id, 1, 'quiz', 'submission:'||sub_id);
+      values (team_rec.id, 2, 'quiz', 'submission:'||sub_id);
       scored := true;
     exception when unique_violation then
       scored := false;

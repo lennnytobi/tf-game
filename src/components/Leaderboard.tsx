@@ -41,7 +41,7 @@ export default function Leaderboard() {
       const teamsWithScores: TeamWithScore[] = teamsData.map(team => {
         const total = totalsData.find(t => t.team_id === team.id)
         const score = total?.score || 0
-        const percentage = Math.max(0, Math.round((1 - (score / 25)) * 100))
+        const percentage = Math.max(0, Math.round((1 - (score / 50)) * 100))
         return {
           ...team,
           score: score,
