@@ -1,10 +1,16 @@
 -- ============================================
--- Reset All Team Points to Zero
+-- Reset All Team Points and Quiz Submissions
 -- ============================================
 
+-- Delete all submissions (quiz answers)
+-- This allows teams to answer all questions again from scratch
+TRUNCATE submissions RESTART IDENTITY CASCADE;
+
 -- Delete all points from the points_ledger
+-- This resets all team scores to 0
 TRUNCATE points_ledger RESTART IDENTITY;
 
--- This will set all team scores back to 0
--- The team_totals view will automatically show 0 for all teams
+-- All teams now have:
+-- - 0 points (100% stress level)
+-- - No answered questions (can answer all questions again)
 
