@@ -11,14 +11,15 @@ interface Team {
 
 // Team member names for easier team identification
 const teamMemberNames: { [key: string]: string[] } = {
-  'A': ['Alex Müller', 'Anna Schmidt'],
-  'B': ['Benjamin Klein', 'Bianca Hoffmann'],
-  'C': ['Christian Braun', 'Caroline Schwarz'],
-  'D': ['Daniel Köhler', 'Diana Huber'],
-  'E': ['Erik Wolf', 'Elena Schulz'],
-  'F': ['Felix Stein', 'Franziska Jung'],
-  'G': ['Gregor Baumann', 'Gabriele Haas'],
-  'H': ['Henrik Böhm', 'Hannah Köhler']
+  'A': ['Liza Sugrobova', 'Maximilian Wolf', 'Paul Dehmel', 'Jost Warmers', 'Leticia Bidoggia', 'Jonas Gebauer'],
+  'B': ['Erik Melchner', 'Vincent Pfeffer', 'Julie Kappeler', 'Paul Wirth', 'Marlene Bookhagen', 'Lukas Dobmeier'],
+  'C': ['Quentin Lammel', 'Marie Ganter', 'Julia Yilin Fu', 'Jonas Reimer', 'Max Volk', 'Maximilian Matern'],
+  'D': ['Jasmin Ramoser', 'Alexander Majores', 'Anna Krieger', 'Fabian Kienreich', 'Katharina Barr', 'Johannes Rupp', 'Maximilian Clemens'],
+  'E': ['Leon Thumm', 'Anna Kahlert', 'Victoria Rein', 'Phillip Liebold', 'Julia Gsell', 'Hendrik Jaritz'],
+  'F': ['Benjamin Speigl', 'Theo Rüdinger', 'Johannes Kask', 'Jennifer Nesterov', 'Dorian Laforet', 'Berenike Keller', 'Emelie Veith'],
+  'G': ['Bruno Bürger', 'Maik Wagenblast', 'Vincent Füssel', 'Felix Müller', 'Nele Ratzka', 'Elisa Smirnov'],
+  'H': ['Benjamin Rosendahl', 'Felix Beckering', 'Felix Dümig', 'Linus Klett', 'Noah Straube', 'Fabian Stützer'],
+  'I': ['Tobias Glatz', 'Simon Feiertag', 'Paul Peters', 'Franziska Holzmann', 'Finn Appel']
 }
 
 // Game names for dropdown
@@ -236,7 +237,7 @@ export default function AdminAwardForm() {
 
           <div>
             <label htmlFor="points" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Punkte *
+              Punkte (1 bis 6) *
             </label>
             <input
               type="number"
