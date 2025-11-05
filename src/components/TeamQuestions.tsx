@@ -47,17 +47,6 @@ export default function TeamQuestions({ selectedTeam, onBack }: TeamQuestionsPro
     }
   }
 
-  const difficultyColor = {
-    easy: 'from-green-500 to-green-600',
-    medium: 'from-yellow-500 to-yellow-600',
-    hard: 'from-red-500 to-red-600'
-  }
-
-  const difficultyLabel = {
-    easy: 'Leicht',
-    medium: 'Mittel',
-    hard: 'Schwer'
-  }
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 border border-gray-200 dark:border-gray-700">
@@ -105,7 +94,7 @@ export default function TeamQuestions({ selectedTeam, onBack }: TeamQuestionsPro
           questions.map((question, index) => (
             <div key={question.id} className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
               <div className="flex items-start space-x-3">
-                <div className={`flex-shrink-0 w-8 h-8 bg-gradient-to-br ${difficultyColor[question.difficulty as keyof typeof difficultyColor]} rounded-full flex items-center justify-center text-white font-bold text-sm`}>
+                <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
                   {index + 1}
                 </div>
                 <div className="flex-1">

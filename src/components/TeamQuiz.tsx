@@ -385,11 +385,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
           return (
             <div key={question.id} className="bg-gray-800 rounded-lg p-4 sm:p-6 border border-gray-700">
               <div className="flex items-start space-x-3 mb-4">
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
-                  question.difficulty === 'easy' ? 'bg-green-600' :
-                  question.difficulty === 'medium' ? 'bg-yellow-600' :
-                  'bg-red-600'
-                }`}>
+                <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm bg-blue-600">
                   {index + 1}
                 </div>
                 <div className="flex-1">
