@@ -140,6 +140,55 @@ INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('Wie viele ACler waren im August 2015 auf der AC Insel dabei?', '32', 'hard', 'H');
 
 -- ============================================
+-- PART 4: Add RLS Policies
+-- ============================================
+
+-- Enable RLS and allow public reads on necessary tables
+
+-- Allow public to read quiz questions (but not answers - frontend only selects prompt, difficulty, team_code)
+ALTER TABLE quiz_questions ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow public to read questions" ON quiz_questions;
+CREATE POLICY "Allow public to read questions" 
+ON quiz_questions 
+FOR SELECT 
+TO PUBLIC
+USING (true);
+
+-- Allow public to read teams
+ALTER TABLE teams ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow public to read teams" ON teams;
+CREATE POLICY "Allow public to read teams" 
+ON teams 
+FOR SELECT 
+TO PUBLIC
+USING (true);
+
+-- Allow public to insert and read submissions
+ALTER TABLE submissions ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow public to insert submissions" ON submissions;
+CREATE POLICY "Allow public to insert submissions" 
+ON submissions 
+FOR INSERT 
+TO PUBLIC
+WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow public to read submissions" ON submissions;
+CREATE POLICY "Allow public to read submissions" 
+ON submissions 
+FOR SELECT 
+TO PUBLIC
+USING (true);
+
+-- Allow public to read points ledger
+ALTER TABLE points_ledger ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow public to read points" ON points_ledger;
+CREATE POLICY "Allow public to read points" 
+ON points_ledger 
+FOR SELECT 
+TO PUBLIC
+USING (true);
+
+-- ============================================
 -- DONE! Your database is now fully updated.
 -- ============================================
 
