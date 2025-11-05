@@ -237,11 +237,20 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
       return
     }
 
-    // Check if this question is already answered correctly
+    // Check if this question is already answered correctly (only block if correct)
     const currentAnswer = getQuestionAnswer(questionId)
     if (currentAnswer.isAnswered && currentAnswer.isCorrect) {
       setMessage({ text: 'Diese Frage wurde bereits korrekt beantwortet', type: 'error' })
       return
+    }
+    
+    // Clear the "answered incorrectly" state when trying again
+    if (currentAnswer.isAnswered && !currentAnswer.isCorrect) {
+      setQuestionAnswers(prev => prev.map(qa => 
+        qa.questionId === questionId 
+          ? { ...qa, isAnswered: false }
+          : qa
+      ))
     }
 
     setLoading(prev => ({ ...prev, [questionId]: true }))
@@ -282,6 +291,12 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
           type: 'error' 
         })
       } else {
+        // Mark as answered but incorrect, allow retry
+        setQuestionAnswers(prev => prev.map(qa => 
+          qa.questionId === questionId 
+            ? { ...qa, isCorrect: false, isAnswered: true, answer }
+            : qa
+        ))
         setMessage({ 
           text: 'Leider falsch. Versuch\'s nochmal.', 
           type: 'error' 
@@ -391,7 +406,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
                   value={questionAnswer.answer}
                   onChange={(e) => handleAnswerChange(question.id, e.target.value)}
                   placeholder={isAnswered && isCorrect ? "Korrekte Antwort" : "Ihre Antwort..."}
-                  disabled={isAnswered || isLoading}
+                  disabled={(isAnswered && isCorrect) || isLoading}
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
                     isAnswered 
                       ? isCorrect 
@@ -403,21 +418,17 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
                 
                 <button
                   onClick={() => handleAnswerSubmit(question.id, questionAnswer.answer)}
-                  disabled={isAnswered || isLoading || !questionAnswer.answer.trim()}
+                  disabled={(isAnswered && isCorrect) || isLoading || !questionAnswer.answer.trim()}
                   className={`w-full py-2 px-4 rounded-md font-semibold transition-colors ${
-                    isAnswered
-                      ? isCorrect
-                        ? 'bg-green-600 text-white cursor-not-allowed'
-                        : 'bg-red-600 text-white cursor-not-allowed'
+                    isAnswered && isCorrect
+                      ? 'bg-green-600 text-white cursor-not-allowed'
                       : isLoading
                         ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
                         : 'bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
                   }`}
                 >
-                  {isAnswered 
-                    ? isCorrect 
-                      ? '✓ Richtig beantwortet' 
-                      : '✗ Falsch beantwortet'
+                  {isAnswered && isCorrect
+                    ? '✓ Richtig beantwortet' 
                     : isLoading 
                       ? 'Wird gesendet...' 
                       : 'Antwort abschicken'
