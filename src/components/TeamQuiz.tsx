@@ -12,8 +12,8 @@ interface Team {
 
 interface Question {
   id: number
-  question: string
-  description: string
+  prompt: string
+  difficulty: string
 }
 
 interface QuestionAnswer {
@@ -43,32 +43,29 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
   const fetchTeamQuestions = async () => {
     console.log('Fetching questions for team:', selectedTeam)
     
-    // For now, use mock questions to ensure it works
-    const mockQuestions = [
-      {
-        id: 1,
-        question: `Frage 1 für ${selectedTeam.name}`,
-        description: "Erste Frage speziell für dein Team"
-      },
-      {
-        id: 2,
-        question: `Frage 2 für ${selectedTeam.name}`,
-        description: "Zweite Frage speziell für dein Team"
-      },
-      {
-        id: 3,
-        question: `Frage 3 für ${selectedTeam.name}`,
-        description: "Dritte Frage speziell für dein Team"
-      }
-    ]
-    
-    console.log('Using mock questions:', mockQuestions)
-    setQuestions(mockQuestions)
-    
-    // Fetch existing correct submissions for this team
-    await fetchExistingSubmissions(mockQuestions)
-    
-    setQuestionsLoading(false)
+    try {
+      // Fetch questions assigned to this team
+      const { data, error } = await supabase
+        .from('quiz_questions')
+        .select('id, prompt, difficulty')
+        .eq('team_code', selectedTeam.code)
+        .order('id')
+      
+      if (error) throw error
+      
+      const fetchedQuestions = data || []
+      console.log('Fetched questions:', fetchedQuestions)
+      setQuestions(fetchedQuestions)
+      
+      // Fetch existing correct submissions for this team
+      await fetchExistingSubmissions(fetchedQuestions)
+    } catch (error) {
+      console.error('Error fetching questions:', error)
+      setQuestions([])
+      setQuestionAnswers([])
+    } finally {
+      setQuestionsLoading(false)
+    }
   }
 
   const fetchExistingSubmissions = async (questions: Question[]) => {
@@ -269,9 +266,9 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
             ? { ...qa, isCorrect: true, isAnswered: true, answer }
             : qa
         ))
-        const percentage = Math.max(0, Math.round((1 - (result.team_total / 25)) * 100))
+        const percentage = Math.max(0, Math.round((1 - (result.team_total / 50)) * 100))
         setMessage({ 
-          text: `Richtig! Stresslevel erhöht für ${result.team} (Neues Stresslevel: ${percentage}%)`, 
+          text: `Richtig! Stresslevel verringert für ${result.team} (Neues Stresslevel: ${percentage}%)`, 
           type: 'success' 
         })
       } else if (result.is_correct && !result.scored) {
@@ -342,7 +339,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
             </div>
           </div>
           <p className="text-xs text-blue-400 mt-1">
-            Jede richtige Antwort gibt +1 Punkt für dein Team
+            Jede richtige Antwort gibt +2 Punkte für dein Team
           </p>
         </div>
       </div>
@@ -373,16 +370,28 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
           return (
             <div key={question.id} className="bg-gray-800 rounded-lg p-4 sm:p-6 border border-gray-700">
               <div className="flex items-start space-x-3 mb-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
+                  question.difficulty === 'easy' ? 'bg-green-600' :
+                  question.difficulty === 'medium' ? 'bg-yellow-600' :
+                  'bg-red-600'
+                }`}>
                   {index + 1}
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-base font-semibold text-white mb-1">
-                    {question.question}
-                  </h4>
-                  <p className="text-sm text-gray-400">
-                    {question.description}
-                  </p>
+                  <div className="flex items-center justify-between mb-1">
+                    <h4 className="text-base font-semibold text-white">
+                      {question.prompt}
+                    </h4>
+                    <span className={`text-xs font-medium px-2 py-1 rounded ${
+                      question.difficulty === 'easy' ? 'bg-green-900/30 text-green-300' :
+                      question.difficulty === 'medium' ? 'bg-yellow-900/30 text-yellow-300' :
+                      'bg-red-900/30 text-red-300'
+                    }`}>
+                      {question.difficulty === 'easy' ? 'Leicht' :
+                       question.difficulty === 'medium' ? 'Mittel' :
+                       'Schwer'}
+                    </span>
+                  </div>
                 </div>
               </div>
 

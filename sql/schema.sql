@@ -10,7 +10,9 @@ create table if not exists teams (
 create table if not exists quiz_questions (
   id serial primary key,
   prompt text not null,
-  answer_norm text not null
+  answer_norm text not null,
+  difficulty text check (difficulty in ('easy', 'medium', 'hard')),
+  team_code text references teams(code)
 );
 
 -- User submissions (public can insert; they cannot read correct answers)

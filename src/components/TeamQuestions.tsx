@@ -1,6 +1,7 @@
 'use client'
 
-// Removed unused useState import
+import { useState, useEffect } from 'react'
+import { supabase } from '@/lib/supabaseClient'
 
 interface Team {
   id: string
@@ -9,30 +10,54 @@ interface Team {
   sort_order: number
 }
 
+interface Question {
+  id: number
+  prompt: string
+  difficulty: string
+}
+
 interface TeamQuestionsProps {
   selectedTeam: Team
   onBack: () => void
 }
 
 export default function TeamQuestions({ selectedTeam, onBack }: TeamQuestionsProps) {
-  // Mock questions - in a real app, these would come from the database
-  const teamQuestions = [
-    {
-      id: 1,
-      question: `Frage 1 für Team ${selectedTeam.name}`,
-      description: "Erste Frage speziell für dein Team"
-    },
-    {
-      id: 2,
-      question: `Frage 2 für Team ${selectedTeam.name}`,
-      description: "Zweite Frage speziell für dein Team"
-    },
-    {
-      id: 3,
-      question: `Frage 3 für Team ${selectedTeam.name}`,
-      description: "Dritte Frage speziell für dein Team"
+  const [questions, setQuestions] = useState<Question[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchTeamQuestions()
+  }, [selectedTeam.code])
+
+  async function fetchTeamQuestions() {
+    try {
+      const { data, error } = await supabase
+        .from('quiz_questions')
+        .select('id, prompt, difficulty')
+        .eq('team_code', selectedTeam.code)
+        .order('id')
+
+      if (error) throw error
+      setQuestions(data || [])
+    } catch (error) {
+      console.error('Error fetching questions:', error)
+      setQuestions([])
+    } finally {
+      setLoading(false)
     }
-  ]
+  }
+
+  const difficultyColor = {
+    easy: 'from-green-500 to-green-600',
+    medium: 'from-yellow-500 to-yellow-600',
+    hard: 'from-red-500 to-red-600'
+  }
+
+  const difficultyLabel = {
+    easy: 'Leicht',
+    medium: 'Mittel',
+    hard: 'Schwer'
+  }
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 border border-gray-200 dark:border-gray-700">
@@ -58,31 +83,49 @@ export default function TeamQuestions({ selectedTeam, onBack }: TeamQuestionsPro
               Du beantwortest die Fragen für {selectedTeam.name}
             </p>
             <p className="text-xs text-blue-600 dark:text-blue-300">
-              Jede richtige Antwort gibt +1 Punkt für dein Team
+              Jede richtige Antwort gibt +2 Punkte für dein Team
             </p>
           </div>
         </div>
       </div>
       
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Deine Fragen:</h3>
-        {teamQuestions.map((question, index) => (
-          <div key={question.id} className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                {index + 1}
-              </div>
-              <div className="flex-1">
-                <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-1">
-                  {question.question}
-                </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  {question.description}
-                </p>
+        <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+          {loading ? 'Lade Fragen...' : `Deine ${questions.length > 1 ? 'Fragen' : 'Frage'}:`}
+        </h3>
+        {loading ? (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          </div>
+        ) : questions.length === 0 ? (
+          <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+            Noch keine Fragen für dieses Team verfügbar.
+          </div>
+        ) : (
+          questions.map((question, index) => (
+            <div key={question.id} className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+              <div className="flex items-start space-x-3">
+                <div className={`flex-shrink-0 w-8 h-8 bg-gradient-to-br ${difficultyColor[question.difficulty as keyof typeof difficultyColor]} rounded-full flex items-center justify-center text-white font-bold text-sm`}>
+                  {index + 1}
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="text-base font-semibold text-gray-900 dark:text-white">
+                      {question.prompt}
+                    </h4>
+                    <span className={`text-xs font-medium px-2 py-1 rounded ${
+                      question.difficulty === 'easy' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' :
+                      question.difficulty === 'medium' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300' :
+                      'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300'
+                    }`}>
+                      {difficultyLabel[question.difficulty as keyof typeof difficultyLabel]}
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   )
