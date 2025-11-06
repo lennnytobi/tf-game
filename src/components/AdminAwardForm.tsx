@@ -11,10 +11,10 @@ interface Team {
 
 // Team member names for easier team identification
 const teamMemberNames: { [key: string]: string[] } = {
-  'A': ['Liza Sugrobova', 'Maximilian Wolf', 'Paul Dehmel', 'Jost Warmers', 'Leticia Bidoggia', 'Jonas Gebauer'],
+  'A': ['Liza Sugrobova', 'Maximilian Wolf', 'Paul Dehmel', 'Jost Warmers', 'Leticia Bidoggia', 'Maximilian Clemens'],
   'B': ['Erik Melchner', 'Vincent Pfeffer', 'Julie Kappeler', 'Paul Wirth', 'Marlene Bookhagen', 'Lukas Dobmeier'],
   'C': ['Quentin Lammel', 'Marie Ganter', 'Julia Yilin Fu', 'Jonas Reimer', 'Max Volk', 'Maximilian Matern'],
-  'D': ['Jasmin Ramoser', 'Alexander Majores', 'Anna Krieger', 'Fabian Kienreich', 'Katharina Barr', 'Johannes Rupp', 'Maximilian Clemens'],
+  'D': ['Jasmin Ramoser', 'Alexander Majores', 'Anna Krieger', 'Fabian Kienreich', 'Katharina Barr', 'Johannes Rupp'],
   'E': ['Leon Thumm', 'Anna Kahlert', 'Victoria Rein', 'Phillip Liebold', 'Julia Gsell', 'Hendrik Jaritz'],
   'F': ['Benjamin Speigl', 'Theo Rüdinger', 'Johannes Kask', 'Jennifer Nesterov', 'Berenike Keller', 'Emelie Veith'],
   'G': ['Bruno Bürger', 'Maik Wagenblast', 'Vincent Füssel', 'Felix Müller', 'Nele Ratzka', 'Elisa Smirnov'],

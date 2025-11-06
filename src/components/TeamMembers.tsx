@@ -18,7 +18,7 @@ const teamMembers: { [key: string]: string[] } = {
     'Paul Dehmel',
     'Jost Warmers',
     'Leticia Bidoggia',
-    'Jonas Gebauer'
+    'Maximilian Clemens'
   ],
   'B': [
     'Erik Melchner',
@@ -42,8 +42,7 @@ const teamMembers: { [key: string]: string[] } = {
     'Anna Krieger',
     'Fabian Kienreich',
     'Katharina Barr',
-    'Johannes Rupp',
-    'Maximilian Clemens'
+    'Johannes Rupp'
   ],
   'E': [
     'Leon Thumm',
