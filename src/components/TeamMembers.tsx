@@ -58,7 +58,6 @@ const teamMembers: { [key: string]: string[] } = {
     'Theo Rüdinger',
     'Johannes Kask',
     'Jennifer Nesterov',
-    'Dorian Laforet',
     'Berenike Keller',
     'Emelie Veith'
   ],

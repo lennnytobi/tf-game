@@ -16,7 +16,7 @@ const teamMemberNames: { [key: string]: string[] } = {
   'C': ['Quentin Lammel', 'Marie Ganter', 'Julia Yilin Fu', 'Jonas Reimer', 'Max Volk', 'Maximilian Matern'],
   'D': ['Jasmin Ramoser', 'Alexander Majores', 'Anna Krieger', 'Fabian Kienreich', 'Katharina Barr', 'Johannes Rupp', 'Maximilian Clemens'],
   'E': ['Leon Thumm', 'Anna Kahlert', 'Victoria Rein', 'Phillip Liebold', 'Julia Gsell', 'Hendrik Jaritz'],
-  'F': ['Benjamin Speigl', 'Theo Rüdinger', 'Johannes Kask', 'Jennifer Nesterov', 'Dorian Laforet', 'Berenike Keller', 'Emelie Veith'],
+  'F': ['Benjamin Speigl', 'Theo Rüdinger', 'Johannes Kask', 'Jennifer Nesterov', 'Berenike Keller', 'Emelie Veith'],
   'G': ['Bruno Bürger', 'Maik Wagenblast', 'Vincent Füssel', 'Felix Müller', 'Nele Ratzka', 'Elisa Smirnov'],
   'H': ['Benjamin Rosendahl', 'Felix Beckering', 'Felix Dümig', 'Linus Klett', 'Noah Straube', 'Fabian Stützer'],
   'I': ['Tobias Glatz', 'Simon Feiertag', 'Paul Peters', 'Franziska Holzmann', 'Finn Appel']
