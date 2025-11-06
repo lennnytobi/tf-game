@@ -132,8 +132,8 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
         const submission = submissions?.find(s => s.question_id === q.id)
         console.log(`Question ${q.id} latest submission:`, submission)
         
-        // Only show the answer if the latest submission was correct
-        const answer = submission?.is_correct ? submission.answer : ''
+        // Don't show the answer text for security reasons (teams share questions)
+        const answer = ''
         
         return {
           questionId: q.id,
@@ -305,7 +305,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
       if (result.is_correct && result.scored) {
         setQuestionAnswers(prev => prev.map(qa => 
           qa.questionId === questionId 
-            ? { ...qa, isCorrect: true, isAnswered: true, answer }
+            ? { ...qa, isCorrect: true, isAnswered: true, answer: '' }  // Clear answer text
             : qa
         ))
         const percentage = Math.max(0, Math.round((1 - (result.team_total / 50)) * 100))
@@ -316,7 +316,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
       } else if (result.is_correct && !result.scored) {
         setQuestionAnswers(prev => prev.map(qa => 
           qa.questionId === questionId 
-            ? { ...qa, isCorrect: true, isAnswered: true, answer }
+            ? { ...qa, isCorrect: true, isAnswered: true, answer: '' }  // Clear answer text
             : qa
         ))
         setMessage({ 
@@ -447,7 +447,7 @@ export default function TeamQuiz({ selectedTeam, onBack }: TeamQuizProps) {
                   type="text"
                   value={questionAnswer.answer}
                   onChange={(e) => handleAnswerChange(question.id, e.target.value)}
-                  placeholder={isAnswered && isCorrect ? "Korrekte Antwort" : "Ihre Antwort..."}
+                  placeholder={isAnswered && isCorrect ? "✓ Richtig beantwortet" : "Ihre Antwort..."}
                   disabled={(isAnswered && isCorrect) || isLoading}
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
                     isAnswered 
