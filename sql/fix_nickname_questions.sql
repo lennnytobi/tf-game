@@ -1,9 +1,16 @@
 -- ============================================
--- Fix Nickname Question Distribution
+-- Fix Nickname Question Distribution & Reset Game
 -- Ensures teams don't answer questions about their own members
+-- Also clears all submissions and points to start fresh
 -- ============================================
 
--- Delete only the easy questions (nickname questions) to redistribute them
+-- Step 1: Clear all submissions (to avoid foreign key constraint)
+TRUNCATE submissions RESTART IDENTITY CASCADE;
+
+-- Step 2: Clear all points
+TRUNCATE points_ledger RESTART IDENTITY;
+
+-- Step 3: Delete only the easy questions (nickname questions) to redistribute them
 DELETE FROM quiz_questions WHERE difficulty = 'easy';
 
 -- Re-insert easy questions with correct distribution
