@@ -86,24 +86,25 @@ TRUNCATE quiz_questions RESTART IDENTITY CASCADE;
 -- Questions are reused across teams and evenly distributed
 
 -- EASY QUESTIONS (4 unique questions distributed across 8 teams)
+-- Important: Nickname questions are NOT assigned to teams where the answer person is a member!
 -- Q1: Celonis - Teams A, B (2 teams)
 INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('In welchem Jahr wurde Celonis gegründet?', '2011', 'easy', 'A'),
 ('In welchem Jahr wurde Celonis gegründet?', '2011', 'easy', 'B');
 
--- Q2: Tänzer - Teams C, D (2 teams)
+-- Q2: Tänzer (Benjamin Speigl is on Team F) - Teams C, D (2 teams, NOT F)
 INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('Welcher ACler ist unter dem Namen "Tänzer" bekannt?', 'benjamin speigl', 'easy', 'C'),
 ('Welcher ACler ist unter dem Namen "Tänzer" bekannt?', 'benjamin speigl', 'easy', 'D');
 
--- Q3: Doc - Teams E, F (2 teams)
+-- Q3: Doc (Simon Feiertag is on Team I - org team) - Teams E, G (2 teams)
 INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
 ('Welcher ACler ist unter dem Namen "Doc" bekannt?', 'simon feiertag', 'easy', 'E'),
-('Welcher ACler ist unter dem Namen "Doc" bekannt?', 'simon feiertag', 'easy', 'F');
+('Welcher ACler ist unter dem Namen "Doc" bekannt?', 'simon feiertag', 'easy', 'G');
 
--- Q4: Deichsler - Teams G, H (2 teams)
+-- Q4: Deichsler (Maik Wagenblast is on Team G) - Teams F, H (2 teams, NOT G)
 INSERT INTO quiz_questions (prompt, answer_norm, difficulty, team_code) VALUES
-('Welcher ACler ist unter dem Namen "Deichsler" bekannt?', 'maik wagenblast', 'easy', 'G'),
+('Welcher ACler ist unter dem Namen "Deichsler" bekannt?', 'maik wagenblast', 'easy', 'F'),
 ('Welcher ACler ist unter dem Namen "Deichsler" bekannt?', 'maik wagenblast', 'easy', 'H');
 
 -- MEDIUM QUESTIONS (3 unique questions distributed across 8 teams)
