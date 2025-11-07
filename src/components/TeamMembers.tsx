@@ -58,7 +58,7 @@ const teamMembers: { [key: string]: string[] } = {
     'Johannes Kask',
     'Jennifer Nesterov',
     'Berenike Keller',
-    'Emelie Veith'
+    'Emilie Veit'
   ],
   'G': [
     'Bruno Bürger',
