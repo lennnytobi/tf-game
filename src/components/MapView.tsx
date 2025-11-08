@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-
 export default function MapView() {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6">
@@ -9,13 +7,11 @@ export default function MapView() {
       
       <div className="flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
         <div className="w-full">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/Map.png"
             alt="Teambuilding Map"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-            priority
+            className="w-full h-auto object-contain"
           />
         </div>
       </div>
